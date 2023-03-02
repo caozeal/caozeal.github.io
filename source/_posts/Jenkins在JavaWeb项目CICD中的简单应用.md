@@ -2,8 +2,10 @@
 title: Jenkins在Java web项目CI/CD中的简单应用
 date: 2023-03-02 18:41:01
 tags: jenkins
+excerpt: Jenkins is a self-contained, open source automation server which can be used to automate all sorts of tasks related to building, testing, and delivering or deploying software.
 ---
-> [傲然绝唳的小栈](https://mp.weixin.qq.com/s/-bJfhCfjlKZ3gK2uf2w3Ug)
+
+>  [傲然绝唳的小栈](https://mp.weixin.qq.com/s/-bJfhCfjlKZ3gK2uf2w3Ug)
 
 # Jenkins
 
