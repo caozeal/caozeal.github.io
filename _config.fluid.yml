@@ -796,11 +796,11 @@ valine:
   placeholder: 要好好评论哦！
   avatar: 'retro'
   meta: ['nick', 'mail', 'link']
-  requiredFields: []
+  requiredFields: ['nick']
   pageSize: 10
   lang: 'zh-CN'
   highlight: false
-  recordIP: false
+  recordIP: true
   serverURLs: ''
   emojiCDN:
   emojiMaps:
