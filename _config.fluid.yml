@@ -350,6 +350,7 @@ navbar:
     - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
     - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
+    - { key: "game", link: "/html/snake/snake.html", icon: "iconfont icon-link-fill" }
     #- { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
 
 # 搜索功能，基于 hexo-generator-search 插件，若已安装其他搜索插件请关闭此功能，以避免生成多余的索引文件
@@ -366,7 +367,7 @@ search:
   generate_path: /local-search.xml
 
   # 搜索的范围
-  # Search field
+  # Search field  
   # Options: post | page | all
   field: post
 
