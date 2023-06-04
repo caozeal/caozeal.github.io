@@ -8,10 +8,10 @@ let snake = [
   { x: 9, y: 10 },
   { x: 8, y: 10 },
 ];
-let food = { x: 5, y: 5 };
+let food = { x: 300, y: 300 };
 let direction = "right";
 let score = 0;
-const gridSize = 8; // Change this to adjust the size of the grid
+const gridSize = 16; // Change this to adjust the size of the grid
 // 在 JavaScript 文件中添加以下代码
 let scoreElement = document.getElementById("score");
 
@@ -37,10 +37,10 @@ function gameLoop() {
 
   // Check for collision with food
   if (
-    head.x >= food.x - 8 &&
-    head.x < food.x + 8 &&
-    head.y >= food.y - 8 &&
-    head.y < food.y + 8
+    head.x >= food.x - gridSize &&
+    head.x < food.x + gridSize &&
+    head.y >= food.y - gridSize &&
+    head.y < food.y + gridSize
   ) {
     score++;
     // 在分数更新时更新元素的文本内容
@@ -94,10 +94,10 @@ function gameLoop() {
     ctx.fillRect(segment.x, segment.y, gridSize, gridSize); // Increase the size of the snake to 4x4 pixels
   });
   ctx.fillStyle = "red";
-  ctx.fillRect(food.x, food.y, 8, 8); // Increase the size of the food to 4x4 pixels
+  ctx.fillRect(food.x, food.y, 16, 16); // Increase the size of the food to 4x4 pixels
 }
 
-let intervalId = setInterval(gameLoop, 10); // Decrease the interval to 50 milliseconds
+let intervalId = setInterval(gameLoop, 5); // Decrease the interval to 50 milliseconds
 // Set up the keyboard controls
 document.addEventListener("keydown", (event) => {
   switch (event.key) {
