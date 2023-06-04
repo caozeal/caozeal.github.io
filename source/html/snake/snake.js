@@ -116,34 +116,33 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-// Set up the touch controls
-let touchStartX = null;
-let touchStartY = null;
-document.addEventListener("touchstart", (event) => {
-  touchStartX = event.touches[0].clientX;
-  touchStartY = event.touches[0].clientY;
+// 在 JavaScript 文件中添加以下代码
+let upButton = document.getElementById("up");
+let downButton = document.getElementById("down");
+let leftButton = document.getElementById("left");
+let rightButton = document.getElementById("right");
+
+// 监听按钮的点击事件，并在点击时更新蛇的方向
+upButton.addEventListener("click", function() {
+  if (direction !== "down") {
+    direction = "up";
+  }
 });
-document.addEventListener("touchmove", (event) => {
-  if (!touchStartX || !touchStartY) {
-    return;
+
+downButton.addEventListener("click", function() {
+  if (direction !== "up") {
+    direction = "down";
   }
-  let touchEndX = event.touches[0].clientX;
-  let touchEndY = event.touches[0].clientY;
-  let touchDiffX = touchStartX - touchEndX;
-  let touchDiffY = touchStartY - touchEndY;
-  if (Math.abs(touchDiffX) > Math.abs(touchDiffY)) {
-    if (touchDiffX > 0 && direction !== "right") {
-      direction = "left";
-    } else if (touchDiffX < 0 && direction !== "left") {
-      direction = "right";
-    }
-  } else {
-    if (touchDiffY > 0 && direction !== "down") {
-      direction = "up";
-    } else if (touchDiffY < 0 && direction !== "up") {
-      direction = "down";
-    }
+});
+
+leftButton.addEventListener("click", function() {
+  if (direction !== "right") {
+    direction = "left";
   }
-  touchStartX = null;
-  touchStartY = null;
+});
+
+rightButton.addEventListener("click", function() {
+  if (direction !== "left") {
+    direction = "right";
+  }
 });
