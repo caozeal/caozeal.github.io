@@ -122,26 +122,26 @@ let downButton = document.getElementById("down");
 let leftButton = document.getElementById("left");
 let rightButton = document.getElementById("right");
 
-// 监听按钮的点击事件，并在点击时更新蛇的方向
-upButton.addEventListener("click", function() {
+// 在 JavaScript 文件中添加以下代码
+upButton.addEventListener("touchstart", function() {
   if (direction !== "down") {
     direction = "up";
   }
 });
 
-downButton.addEventListener("click", function() {
+downButton.addEventListener("touchstart", function() {
   if (direction !== "up") {
     direction = "down";
   }
 });
 
-leftButton.addEventListener("click", function() {
+leftButton.addEventListener("touchstart", function() {
   if (direction !== "right") {
     direction = "left";
   }
 });
 
-rightButton.addEventListener("click", function() {
+rightButton.addEventListener("touchstart", function() {
   if (direction !== "left") {
     direction = "right";
   }
