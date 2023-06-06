@@ -1,6 +1,7 @@
 // Set up the canvas
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+const restartButton = document.getElementById("restart");
 
 // Set up the game variables
 let snake = [
@@ -78,6 +79,7 @@ function gameLoop() {
       .slice(1)
       .some((segment) => segment.x === head.x && segment.y === head.y)
   ) {
+    gameOver();
     clearInterval(intervalId);
     alert(`Game over! Your score was ${score}.`);
   }
@@ -95,6 +97,28 @@ function gameLoop() {
   });
   ctx.fillStyle = "red";
   ctx.fillRect(food.x, food.y, 16, 16); // Increase the size of the food to 4x4 pixels
+}
+
+function gameOver() {
+  // 显示重生按钮
+  restartButton.style.display = "block";
+}
+
+function resetGame() {
+  // 隐藏重生按钮
+  restartButton.style.display = "none";
+
+  // 重置游戏状态
+  snake = [
+    { x: 10, y: 10 },
+    { x: 9, y: 10 },
+    { x: 8, y: 10 },
+  ];
+  food = { x: 300, y: 300 };
+  direction = "right";
+  score = 0;
+  scoreElement.textContent = `Score: ${score}`;
+  intervalId = setInterval(gameLoop, 5); 
 }
 
 let intervalId = setInterval(gameLoop, 5); // Decrease the interval to 50 milliseconds
@@ -145,4 +169,9 @@ rightButton.addEventListener("touchstart", function() {
   if (direction !== "left") {
     direction = "right";
   }
+});
+
+restartButton.addEventListener("click", function() {
+  // 重置游戏状态
+  resetGame();
 });
