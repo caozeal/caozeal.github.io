@@ -3,7 +3,7 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const restartButton = document.getElementById("restart");
 const foodImage = new Image();
-foodImage.src = "resource/apple.jpg";
+foodImage.src = "resource/apple.png";
 
 // Set up the game variables
 let snake = [
