@@ -10,8 +10,8 @@ foodImage.src = "resource/apple.png";
 const width = Math.min(window.innerWidth, window.innerHeight);
 canvas.width = width * window.devicePixelRatio;
 canvas.height = width * window.devicePixelRatio;
-canvas.style.width = width * 0.9 + "px";
-canvas.style.height = width * 0.9 + "px";
+canvas.style.width = width * 0.95 + "px";
+canvas.style.height = width * 0.95 + "px";
 // Set up the game variables
 let snake = [{ x: 10, y: 10 }];
 let food = { x: 100, y: 100 };
@@ -20,6 +20,12 @@ let score = 0;
 const gridSize = parseInt(width / 30); // Change this to adjust the size of the grid
 // 在 JavaScript 文件中添加以下代码
 let scoreElement = document.getElementById("score");
+// Set up the speed control
+let speed = 50;
+let speedControl = document.getElementById("speed-control");
+speedControl.addEventListener("input", () => {
+  speed = 100 - speedControl.value;
+});
 
 // Set up the game loop
 function gameLoop() {
@@ -104,10 +110,10 @@ function resetGame() {
   direction = "right";
   score = 0;
   scoreElement.textContent = `Score: ${score}`;
-  intervalId = setInterval(gameLoop, 100);
+  intervalId = setInterval(gameLoop, 2 * speed);
 }
 
-let intervalId = setInterval(gameLoop, 100); // Decrease the interval to 50 milliseconds
+let intervalId = setInterval(gameLoop, 2 * speed); // Decrease the interval to 50 milliseconds
 // Set up the keyboard controls
 document.addEventListener("keydown", (event) => {
   switch (event.key) {
