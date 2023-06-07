@@ -1,84 +1,109 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Snake Game</title>
-    <style>
-      /* 在 CSS 文件中添加以下代码 */
+
+<head>
+  <title>Snake Game</title>
+  <style>
+    /* 在 CSS 文件中添加以下代码 */
+    @media screen and (orientation: landscape) {
       #controls {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 1fr);
-        grid-gap: 10px;
-        justify-content: center;
-        align-items: center;
-        margin-top: 20px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        text-align: center;
       }
+    }
 
-      #up {
-        grid-column: 2;
-        grid-row: 1;
-        height: 160px;
-        width: 300px;
+    @media screen and (orientation: portrait) {
+      #controls {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        text-align: center;
       }
+    }
 
-      #down {
-        grid-column: 2;
-        grid-row: 3;
-        height: 160px;
-        width: 300px;
-      }
+    #controls {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      grid-gap: 10px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
 
-      #left {
-        grid-column: 1;
-        grid-row: 2;
-        height: 160px;
-        width: 300px;
-      }
+    #up {
+      grid-column: 2;
+      grid-row: 1;
+      height: 160px;
+      width: 260px;
+    }
 
-      #right {
-        grid-column: 3;
-        grid-row: 2;
-        height: 160px;
-        width: 300px;
-      }
+    #down {
+      grid-column: 2;
+      grid-row: 3;
+      height: 160px;
+      width: 260px;
+    }
 
-      #restart {
-        grid-column: 2;
-        grid-row: 2;
-        height: 160px;
-        width: 300px;
-        background-color: #cc3300;
-      }
+    #left {
+      grid-column: 1;
+      grid-row: 2;
+      height: 160px;
+      width: 260px;
+    }
 
-      #controls button {
-        font-size: 24px;
-        margin: 0;
-        padding: 0;
-      }
+    #right {
+      grid-column: 3;
+      grid-row: 2;
+      height: 160px;
+      width: 260px;
+    }
 
-      /* 在 CSS 文件中添加以下代码 */
-      button {
-        transition: transform 0.1s ease-in-out;
-        border-radius: 10px;
-      }
+    #restart {
+      grid-column: 2;
+      grid-row: 2;
+      height: 160px;
+      width: 260px;
+      background-color: #cc3300;
+    }
 
-      button:active {
-        transform: scale(0.9);
-      }
-    </style>
-  </head>
-  <body>
-    <!-- 在 HTML 文件中添加以下代码 -->
-    <div id="score">Score: 0</div>
-    <canvas id="canvas" width="950" height="950"></canvas>
-    <div id="controls">
-      <button id="up">↑</button>
-      <button id="down">↓</button>
-      <button id="left">←</button>
-      <button id="right">→</button>
-      <button id="restart" style="display: none;">Restart</button>
-    </div>
-    <div id="score">version:v0.0.1</div>
-    <script src="snake.js"></script>
-  </body>
+    #controls button {
+      font-size: 24px;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* 在 CSS 文件中添加以下代码 */
+    button {
+      transition: transform 0.1s ease-in-out;
+      border-radius: 10px;
+    }
+
+    button:active {
+      transform: scale(0.9);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 在 HTML 文件中添加以下代码 -->
+  <div id="score">Score: 0</div>
+  <canvas id="canvas"></canvas>
+  <div id="controls">
+    <button id="up">↑</button>
+    <button id="down">↓</button>
+    <button id="left">←</button>
+    <button id="right">→</button>
+    <button id="restart" style="display: none;">Restart</button>
+  </div>
+  <div id="score">version:v0.0.1.2</div>
+  <script src="snake.js"></script>
+</body>
+
 </html>

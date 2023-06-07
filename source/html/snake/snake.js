@@ -1,20 +1,23 @@
 // Set up the canvas
+const isTouchDevice = "ontouchstart" in document.documentElement;
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const restartButton = document.getElementById("restart");
 const foodImage = new Image();
 foodImage.src = "resource/apple.png";
 
+// Set up the canvas size
+const width = Math.min(window.innerWidth, window.innerHeight);
+canvas.width = width * window.devicePixelRatio;
+canvas.height = width * window.devicePixelRatio;
+canvas.style.width = width * 0.9 + "px";
+canvas.style.height = width * 0.9 + "px";
 // Set up the game variables
-let snake = [
-  { x: 10, y: 10 },
-  { x: 9, y: 10 },
-  { x: 8, y: 10 },
-];
-let food = { x: 300, y: 300 };
+let snake = [{ x: 10, y: 10 }];
+let food = { x: 100, y: 100 };
 let direction = "right";
 let score = 0;
-const gridSize = 16; // Change this to adjust the size of the grid
+const gridSize = parseInt(width / 30); // Change this to adjust the size of the grid
 // 在 JavaScript 文件中添加以下代码
 let scoreElement = document.getElementById("score");
 
@@ -24,52 +27,19 @@ function gameLoop() {
   let head = { x: snake[0].x, y: snake[0].y };
   switch (direction) {
     case "up":
-      head.y--;
+      head.y -= gridSize;
       break;
     case "down":
-      head.y++;
+      head.y += gridSize;
       break;
     case "left":
-      head.x--;
+      head.x -= gridSize;
       break;
     case "right":
-      head.x++;
+      head.x += gridSize;
       break;
   }
   snake.unshift(head);
-
-  // Check for collision with food
-  if (
-    head.x >= food.x - gridSize &&
-    head.x < food.x + gridSize &&
-    head.y >= food.y - gridSize &&
-    head.y < food.y + gridSize
-  ) {
-    score++;
-    // 在分数更新时更新元素的文本内容
-    scoreElement.textContent = `Score: ${score}`;
-    food.x = Math.floor(Math.random() * canvas.width);
-    food.y = Math.floor(Math.random() * canvas.height);
-    let newHead = { x: head.x, y: head.y };
-    switch (direction) {
-      case "up":
-        newHead.y -= gridSize;
-        break;
-      case "down":
-        newHead.y += gridSize;
-        break;
-      case "left":
-        newHead.x -= gridSize;
-        break;
-      case "right":
-        newHead.x += gridSize;
-        break;
-    }
-    snake.unshift(newHead); // Add the new head to the front of the snake
-    head = newHead;
-  } else {
-    snake.pop();
-  }
 
   // Check for collision with walls or self
   if (
@@ -86,18 +56,36 @@ function gameLoop() {
     alert(`Game over! Your score was ${score}.`);
   }
 
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // Check for collision with food
+  if (
+    head.x >= food.x - gridSize &&
+    head.x < food.x + gridSize &&
+    head.y >= food.y - gridSize &&
+    head.y < food.y + gridSize
+  ) {
+    score++;
+    // 在分数更新时更新元素的文本内容
+    scoreElement.textContent = `Score: ${score}`;
+    ctx.clearRect(food.x, food.y, gridSize, gridSize);
+    food.x = Math.floor(Math.random() * canvas.width);
+    food.y = Math.floor(Math.random() * canvas.height);
+  } else {
+    // Remove the tail from the end of the snake
+    let tail = snake.pop();
+
+    // Clear the tail from the canvas
+    ctx.clearRect(tail.x, tail.y, gridSize, gridSize);
+  }
+
   ctx.strokeStyle = "green";
   ctx.strokeRect(0, 0, canvas.width, canvas.height);
   // Draw the game board
 
-  // Draw the border
-
+  // Draw the snake
   ctx.fillStyle = "green";
-  snake.forEach((segment) => {
-    ctx.fillRect(segment.x, segment.y, gridSize, gridSize); // Increase the size of the snake to 4x4 pixels
-  });
-  ctx.drawImage(foodImage, food.x, food.y, 16, 16);
+  ctx.fillRect(head.x, head.y, gridSize, gridSize);
+
+  ctx.drawImage(foodImage, food.x, food.y, gridSize, gridSize);
 }
 
 function gameOver() {
@@ -108,35 +96,40 @@ function gameOver() {
 function resetGame() {
   // 隐藏重生按钮
   restartButton.style.display = "none";
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   // 重置游戏状态
-  snake = [
-    { x: 10, y: 10 },
-    { x: 9, y: 10 },
-    { x: 8, y: 10 },
-  ];
-  food = { x: 300, y: 300 };
+  snake = [{ x: 10, y: 10 }];
+  food = { x: 100, y: 100 };
   direction = "right";
   score = 0;
   scoreElement.textContent = `Score: ${score}`;
-  intervalId = setInterval(gameLoop, 5); 
+  intervalId = setInterval(gameLoop, 100);
 }
 
-let intervalId = setInterval(gameLoop, 5); // Decrease the interval to 50 milliseconds
+let intervalId = setInterval(gameLoop, 100); // Decrease the interval to 50 milliseconds
 // Set up the keyboard controls
 document.addEventListener("keydown", (event) => {
   switch (event.key) {
     case "ArrowUp":
-      direction = "up";
+      if (direction !== "down") {
+        direction = "up";
+      }
       break;
     case "ArrowDown":
-      direction = "down";
+      if (direction !== "up") {
+        direction = "down";
+      }
       break;
     case "ArrowLeft":
-      direction = "left";
+      if (direction !== "right") {
+        direction = "left";
+      }
       break;
     case "ArrowRight":
-      direction = "right";
+      if (direction !== "left") {
+        direction = "right";
+      }
       break;
   }
 });
@@ -147,32 +140,67 @@ let downButton = document.getElementById("down");
 let leftButton = document.getElementById("left");
 let rightButton = document.getElementById("right");
 
-// 在 JavaScript 文件中添加以下代码
-upButton.addEventListener("touchstart", function() {
-  if (direction !== "down") {
-    direction = "up";
-  }
-});
+// 监听点击事件
+if (isTouchDevice) {
+  // 移动端设备，使用touchstart事件
+  // 在 JavaScript 文件中添加以下代码
+  upButton.addEventListener("touchstart", function () {
+    if (direction !== "down") {
+      direction = "up";
+    }
+  });
 
-downButton.addEventListener("touchstart", function() {
-  if (direction !== "up") {
-    direction = "down";
-  }
-});
+  downButton.addEventListener("touchstart", function () {
+    if (direction !== "up") {
+      direction = "down";
+    }
+  });
 
-leftButton.addEventListener("touchstart", function() {
-  if (direction !== "right") {
-    direction = "left";
-  }
-});
+  leftButton.addEventListener("touchstart", function () {
+    if (direction !== "right") {
+      direction = "left";
+    }
+  });
 
-rightButton.addEventListener("touchstart", function() {
-  if (direction !== "left") {
-    direction = "right";
-  }
-});
+  rightButton.addEventListener("touchstart", function () {
+    if (direction !== "left") {
+      direction = "right";
+    }
+  });
 
-restartButton.addEventListener("touchstart", function() {
-  // 重置游戏状态
-  resetGame();
-});
+  restartButton.addEventListener("touchstart", function () {
+    // 重置游戏状态
+    resetGame();
+  });
+} else {
+  // PC端设备，使用mousedown事件
+  // 在 JavaScript 文件中添加以下代码
+  upButton.addEventListener("mousedown", function () {
+    if (direction !== "down") {
+      direction = "up";
+    }
+  });
+
+  downButton.addEventListener("mousedown", function () {
+    if (direction !== "up") {
+      direction = "down";
+    }
+  });
+
+  leftButton.addEventListener("mousedown", function () {
+    if (direction !== "right") {
+      direction = "left";
+    }
+  });
+
+  rightButton.addEventListener("mousedown", function () {
+    if (direction !== "left") {
+      direction = "right";
+    }
+  });
+
+  restartButton.addEventListener("mousedown", function () {
+    // 重置游戏状态
+    resetGame();
+  });
+}
