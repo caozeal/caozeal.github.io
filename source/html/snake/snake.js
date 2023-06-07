@@ -2,6 +2,8 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const restartButton = document.getElementById("restart");
+const foodImage = new Image();
+foodImage.src = "resource/apple.png";
 
 // Set up the game variables
 let snake = [
@@ -95,8 +97,7 @@ function gameLoop() {
   snake.forEach((segment) => {
     ctx.fillRect(segment.x, segment.y, gridSize, gridSize); // Increase the size of the snake to 4x4 pixels
   });
-  ctx.fillStyle = "red";
-  ctx.fillRect(food.x, food.y, 16, 16); // Increase the size of the food to 4x4 pixels
+  ctx.drawImage(foodImage, food.x, food.y, 16, 16);
 }
 
 function gameOver() {
