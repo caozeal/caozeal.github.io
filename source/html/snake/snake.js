@@ -171,7 +171,7 @@ rightButton.addEventListener("touchstart", function() {
   }
 });
 
-restartButton.addEventListener("click", function() {
+restartButton.addEventListener("touchstart", function() {
   // 重置游戏状态
   resetGame();
 });
