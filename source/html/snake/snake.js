@@ -33,16 +33,16 @@ function gameLoop() {
   let head = { x: snake[0].x, y: snake[0].y };
   switch (direction) {
     case "up":
-      head.y -= gridSize;
+      head.y --;
       break;
     case "down":
-      head.y += gridSize;
+      head.y ++;
       break;
     case "left":
-      head.x -= gridSize;
+      head.x --;
       break;
     case "right":
-      head.x += gridSize;
+      head.x ++;
       break;
   }
   snake.unshift(head);
@@ -110,10 +110,10 @@ function resetGame() {
   direction = "right";
   score = 0;
   scoreElement.textContent = `Score: ${score}`;
-  intervalId = setInterval(gameLoop, 2 * speed);
+  intervalId = setInterval(gameLoop, 40 * speed);
 }
 
-let intervalId = setInterval(gameLoop, 2 * speed); // Decrease the interval to 50 milliseconds
+let intervalId = setInterval(gameLoop, 40 * speed); // Decrease the interval to 50 milliseconds
 // Set up the keyboard controls
 document.addEventListener("keydown", (event) => {
   switch (event.key) {
