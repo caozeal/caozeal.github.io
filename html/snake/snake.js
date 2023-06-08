@@ -5,6 +5,8 @@ const ctx = canvas.getContext("2d");
 const restartButton = document.getElementById("restart");
 const foodImage = new Image();
 foodImage.src = "resource/apple.png";
+const gameOverImage = new Image();
+gameOverImage.src = "resource/game_over.jpeg";
 
 // Set up the canvas size
 const width = Math.min(window.innerWidth, window.innerHeight);
@@ -44,7 +46,6 @@ function gameLoop() {
   ) {
     gameOver();
     clearInterval(intervalId);
-    alert(`Game over! Your score was ${score}.`);
   }
 
   // Check for collision with food
@@ -107,6 +108,20 @@ function addHead() {
 function gameOver() {
   // 显示重生按钮
   restartButton.style.display = "block";
+  // 设置透明度
+  ctx.globalAlpha = 0.5;
+  ctx.drawImage(
+    gameOverImage,
+    100,
+    100,
+    canvas.width - 200,
+    canvas.height - 200
+  );
+  ctx.globalAlpha = 1;
+  // 设置字体和颜色
+  ctx.font = "90px Arial";
+  ctx.fillStyle = "red";
+  ctx.fillText(`Game Over!Your score was ${score}`, 100, 100);
 }
 
 function resetGame() {
@@ -114,7 +129,7 @@ function resetGame() {
   restartButton.style.display = "none";
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.strokeStyle = "green";
-ctx.strokeRect(0, 0, canvas.width, canvas.height);
+  ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
   // 重置游戏状态
   snake = [{ x: 10, y: 10 }];
