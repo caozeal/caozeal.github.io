@@ -56,7 +56,7 @@ function gameLoop() {
     head.y < food.y + gridSize
   ) {
     score++;
-    for (let i = 0; i < gridSize - 1; i++) {
+    for (let i = 0; i < (gridSize)/2-1; i++) {
       head = addHead();
       ctx.fillStyle = "green";
       ctx.fillRect(head.x, head.y, gridSize, gridSize);
@@ -89,16 +89,16 @@ function addHead() {
   let head = { x: snake[0].x, y: snake[0].y };
   switch (direction) {
     case "up":
-      head.y--;
+      head.y-=2;
       break;
     case "down":
-      head.y++;
+      head.y+=2;
       break;
     case "left":
-      head.x--;
+      head.x-=2;
       break;
     case "right":
-      head.x++;
+      head.x+=2;
       break;
   }
   snake.unshift(head);
