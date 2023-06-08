@@ -21,31 +21,16 @@ const gridSize = parseInt(width / 30); // Change this to adjust the size of the 
 // 在 JavaScript 文件中添加以下代码
 let scoreElement = document.getElementById("score");
 // Set up the speed control
-let speed = 50;
+let speed = 5;
 let speedControl = document.getElementById("speed-control");
 speedControl.addEventListener("input", () => {
-  speed = 100 - speedControl.value;
+  speed = 10 - speedControl.value;
 });
 
 // Set up the game loop
 function gameLoop() {
   // Move the snake
-  let head = { x: snake[0].x, y: snake[0].y };
-  switch (direction) {
-    case "up":
-      head.y --;
-      break;
-    case "down":
-      head.y ++;
-      break;
-    case "left":
-      head.x --;
-      break;
-    case "right":
-      head.x ++;
-      break;
-  }
-  snake.unshift(head);
+  let head = addHead();
 
   // Check for collision with walls or self
   if (
@@ -70,6 +55,11 @@ function gameLoop() {
     head.y < food.y + gridSize
   ) {
     score++;
+    for (let i = 0; i < gridSize - 1; i++) {
+      head = addHead();
+      ctx.fillStyle = "green";
+      ctx.fillRect(head.x, head.y, gridSize, gridSize);
+    }
     // 在分数更新时更新元素的文本内容
     scoreElement.textContent = `Score: ${score}`;
     ctx.clearRect(food.x, food.y, gridSize, gridSize);
@@ -81,10 +71,10 @@ function gameLoop() {
 
     // Clear the tail from the canvas
     ctx.clearRect(tail.x, tail.y, gridSize, gridSize);
+    tail = snake[snake.length - 1];
+    ctx.fillStyle = "green";
+    ctx.fillRect(tail.x, tail.y, gridSize, gridSize);
   }
-
-  ctx.strokeStyle = "green";
-  ctx.strokeRect(0, 0, canvas.width, canvas.height);
   // Draw the game board
 
   // Draw the snake
@@ -92,6 +82,26 @@ function gameLoop() {
   ctx.fillRect(head.x, head.y, gridSize, gridSize);
 
   ctx.drawImage(foodImage, food.x, food.y, gridSize, gridSize);
+}
+
+function addHead() {
+  let head = { x: snake[0].x, y: snake[0].y };
+  switch (direction) {
+    case "up":
+      head.y--;
+      break;
+    case "down":
+      head.y++;
+      break;
+    case "left":
+      head.x--;
+      break;
+    case "right":
+      head.x++;
+      break;
+  }
+  snake.unshift(head);
+  return head;
 }
 
 function gameOver() {
@@ -103,6 +113,8 @@ function resetGame() {
   // 隐藏重生按钮
   restartButton.style.display = "none";
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.strokeStyle = "green";
+ctx.strokeRect(0, 0, canvas.width, canvas.height);
 
   // 重置游戏状态
   snake = [{ x: 10, y: 10 }];
@@ -110,10 +122,12 @@ function resetGame() {
   direction = "right";
   score = 0;
   scoreElement.textContent = `Score: ${score}`;
-  intervalId = setInterval(gameLoop, 40 * speed);
+  intervalId = setInterval(gameLoop, speed);
 }
 
-let intervalId = setInterval(gameLoop, 40 * speed); // Decrease the interval to 50 milliseconds
+let intervalId = setInterval(gameLoop, speed); // Decrease the interval to 50 milliseconds
+ctx.strokeStyle = "green";
+ctx.strokeRect(0, 0, canvas.width, canvas.height);
 // Set up the keyboard controls
 document.addEventListener("keydown", (event) => {
   switch (event.key) {
