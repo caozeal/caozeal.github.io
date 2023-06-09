@@ -64,8 +64,8 @@ function gameLoop() {
     // 在分数更新时更新元素的文本内容
     scoreElement.textContent = `Score: ${score}`;
     ctx.clearRect(food.x, food.y, gridSize, gridSize);
-    food.x = Math.floor(Math.random() * canvas.width);
-    food.y = Math.floor(Math.random() * canvas.height);
+    food.x = Math.floor(Math.random() * (canvas.width - 2 * gridSize) + gridSize);
+    food.y = Math.floor(Math.random() * (canvas.height - 2 * gridSize) + gridSize);
     ctx.drawImage(foodImage, food.x, food.y, gridSize, gridSize);
   } else {
     // Remove the tail from the end of the snake
