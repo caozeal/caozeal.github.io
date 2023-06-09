@@ -23,10 +23,10 @@ const gridSize = parseInt(width / 30); // Change this to adjust the size of the 
 // 在 JavaScript 文件中添加以下代码
 let scoreElement = document.getElementById("score");
 // Set up the speed control
-let speed = 5;
+let speed = 20;
 let speedControl = document.getElementById("speed-control");
 speedControl.addEventListener("input", () => {
-  speed = 10 - speedControl.value;
+  speed = 30 - speedControl.value;
 });
 
 // Set up the game loop
@@ -56,7 +56,7 @@ function gameLoop() {
     head.y < food.y + gridSize
   ) {
     score++;
-    for (let i = 0; i < (gridSize)/2-1; i++) {
+    for (let i = 0; i < (gridSize)/4-1; i++) {
       head = addHead();
       ctx.fillStyle = "green";
       ctx.fillRect(head.x, head.y, gridSize, gridSize);
@@ -66,6 +66,7 @@ function gameLoop() {
     ctx.clearRect(food.x, food.y, gridSize, gridSize);
     food.x = Math.floor(Math.random() * canvas.width);
     food.y = Math.floor(Math.random() * canvas.height);
+    ctx.drawImage(foodImage, food.x, food.y, gridSize, gridSize);
   } else {
     // Remove the tail from the end of the snake
     let tail = snake.pop();
@@ -81,24 +82,22 @@ function gameLoop() {
   // Draw the snake
   ctx.fillStyle = "green";
   ctx.fillRect(head.x, head.y, gridSize, gridSize);
-
-  ctx.drawImage(foodImage, food.x, food.y, gridSize, gridSize);
 }
 
 function addHead() {
   let head = { x: snake[0].x, y: snake[0].y };
   switch (direction) {
     case "up":
-      head.y-=2;
+      head.y-=4;
       break;
     case "down":
-      head.y+=2;
+      head.y+=4;
       break;
     case "left":
-      head.x-=2;
+      head.x-=4;
       break;
     case "right":
-      head.x+=2;
+      head.x+=4;
       break;
   }
   snake.unshift(head);
@@ -138,11 +137,15 @@ function resetGame() {
   score = 0;
   scoreElement.textContent = `Score: ${score}`;
   intervalId = setInterval(gameLoop, speed);
+  ctx.drawImage(foodImage, food.x, food.y, gridSize, gridSize);
 }
-
-let intervalId = setInterval(gameLoop, speed); // Decrease the interval to 50 milliseconds
+let intervalId = setInterval(gameLoop, speed);
 ctx.strokeStyle = "green";
 ctx.strokeRect(0, 0, canvas.width, canvas.height);
+// 在图像加载完成后绘制图像
+foodImage.onload = function() {
+  ctx.drawImage(foodImage, food.x, food.y, gridSize, gridSize);
+};
 // Set up the keyboard controls
 document.addEventListener("keydown", (event) => {
   switch (event.key) {
