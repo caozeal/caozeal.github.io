@@ -9,16 +9,25 @@ from ship import Ship
 from bullet import Bullet
 from alien import Alien
 from game_stats import GameStatus
+from button import Button
 
-def check_events(ai_settings:Settings, screen:pygame.Surface, ship:Ship, bullets:pygame.sprite.Group):
+def check_events(ai_settings:Settings, screen:pygame.Surface, stats:GameStatus, play_button:Button, ship:Ship, bullets:pygame.sprite.Group):
     """响应按键和鼠标事件"""
     for event in pygame.event.get(): # 事件循环
         if event.type == pygame.QUIT: # 退出事件
             sys.exit()
-        if event.type == pygame.KEYDOWN: # 按键按下事件
+        elif event.type == pygame.KEYDOWN: # 按键按下事件
             check_keydown_events(event, ai_settings, screen, ship, bullets)
-        if event.type == pygame.KEYUP:
+        elif event.type == pygame.KEYUP:
             check_keyup_events(event, ai_settings, screen, ship, bullets)
+        elif event.type == pygame.MOUSEBUTTONDOWN: 
+            mouse_x, mouse_y = pygame.mouse.get_pos()
+            checke_play_button(stats, play_button, mouse_x, mouse_y)
+
+def checke_play_button(stats:GameStatus, play_button:Button, mouse_x, mouse_y):
+    """在玩家单机Play按钮时开始新游戏"""
+    if play_button.rect.collidepoint(mouse_x, mouse_y):
+        stats.game_active = True
 
 def check_keyup_events(event:Event, ai_settings:Settings, screen:pygame.Surface, ship:Ship, bullets:pygame.sprite.Group):
     if event.key == pygame.K_RIGHT:
@@ -133,7 +142,7 @@ def check_bullet_alien_collisions(ai_settings, screen, ship, aliens:pygame.sprit
         create_fleet(ai_settings, screen, ship, aliens)
 
 
-def update_screen(ai_settings:Settings, screen : pygame.Surface, ship:Ship, aliens:pygame.sprite.Group, bullets:pygame.sprite.Group):
+def update_screen(ai_settings:Settings, screen : pygame.Surface, stats:GameStatus, ship:Ship, aliens:pygame.sprite.Group, bullets:pygame.sprite.Group, play_button :Button):
     """更新屏幕上的图像，并切换到新屏幕"""
     # 每次循环时都重绘屏幕
     screen.fill(ai_settings.bg_color) # 填充背景色
@@ -142,6 +151,10 @@ def update_screen(ai_settings:Settings, screen : pygame.Surface, ship:Ship, alie
         bullet.draw_bullet()
     ship.blitme() # 绘制飞船
     aliens.draw(screen) # 绘制外星人
+
+    # 如果游戏处于非活跃状态，就绘制Play按钮
+    if not stats.game_active:
+        play_button.draw_button()
 
     # 让最近绘制的屏幕可见
     pygame.display.flip() # 更新屏幕
