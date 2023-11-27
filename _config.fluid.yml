@@ -999,21 +999,27 @@ links:
   # Member item of page
   items:
     - {
-      title: "Fluid Blog",
-      intro: "主题博客",
-      link: "https://hexo.fluid-dev.com/",
+      title: "深入架构原理与实践",
+      intro: "深入架构原理与实践  -- isno",
+      link: "https://www.thebyte.com.cn/",
       avatar: "/img/favicon.png"
     }
     - {
-      title: "Fluid Docs",
-      intro: "主题使用指南",
-      link: "https://hexo.fluid-dev.com/docs/",
+      title: "AI-For-Beginners",
+      intro: "Artificial Intelligence for Beginners - A Curriculum",
+      link: "https://microsoft.github.io/AI-For-Beginners/",
       avatar: "/img/favicon.png"
     }
     - {
-      title: "Fluid Repo",
-      intro: "主题 GitHub 仓库",
-      link: "https://github.com/fluid-dev/hexo-theme-fluid",
+      title: "Neural Networks: Zero to Hero",
+      intro: "A course by Andrej Karpathy on building neural networks, from scratch, in code.",
+      link: "https://karpathy.ai/zero-to-hero.html",
+      avatar: "/img/favicon.png"
+    }
+    - {
+      title: "Project Gutenberg",
+      intro: "Project Gutenberg is a library of over 70,000 free eBooks",
+      link: "https://www.gutenberg.org/",
       avatar: "/img/favicon.png"
     }
 
