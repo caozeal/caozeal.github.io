@@ -29,9 +29,12 @@ about:
   subtitle: '关于'
 
 links:
-  menu: '友链'
-  title: '友链'
-  subtitle: '友情链接'
+  menu: '资源'
+  title: '资源'
+  subtitle: '网络资源'
+
+game:
+  menu: '小游戏'
 
 page404:
   menu: '页面不存在'

@@ -313,7 +313,9 @@ lazyload:
 
 # 图标库，包含了大量社交类图标，主题依赖的不包含在内，因此可自行修改，详见 https://hexo.fluid-dev.com/docs/icon/
 # Icon library, which includes many social icons, does not include those theme dependent, so your can modify link by yourself. See: https://hexo.fluid-dev.com/docs/en/icon/
-iconfont: //at.alicdn.com/t/font_1736178_lbnruvf0jn.css
+iconfont: 
+  - //at.alicdn.com/t/font_1736178_lbnruvf0jn.css
+  - //at.alicdn.com/t/c/font_4347419_8dqvukj41n.css
 
 
 #---------------------------
@@ -350,8 +352,8 @@ navbar:
     - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
     - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
-    - { key: "game", link: "/html/snake/snake.html", icon: "iconfont icon-link-fill" }
-    #- { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
+    - { key: "game", link: "/html/snake/snake.html", icon: "iconfont icon-fire" }
+    - { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
 
 # 搜索功能，基于 hexo-generator-search 插件，若已安装其他搜索插件请关闭此功能，以避免生成多余的索引文件
 # Search feature, based on hexo-generator-search. If you have installed other search plugins, please disable this feature to avoid generating redundant index files
@@ -651,7 +653,7 @@ post:
 
     # CreativeCommons license
     # Options: BY | BY-SA | BY-ND | BY-NC | BY-NC-SA | BY-NC-ND
-    license: 'BY'
+    license: 'BY-NC-SA'
 
     # 显示作者
     author:
@@ -999,21 +1001,27 @@ links:
   # Member item of page
   items:
     - {
-      title: "Fluid Blog",
-      intro: "主题博客",
-      link: "https://hexo.fluid-dev.com/",
+      title: "深入架构原理与实践",
+      intro: "深入架构原理与实践  -- isno",
+      link: "https://www.thebyte.com.cn/",
       avatar: "/img/favicon.png"
     }
     - {
-      title: "Fluid Docs",
-      intro: "主题使用指南",
-      link: "https://hexo.fluid-dev.com/docs/",
+      title: "AI-For-Beginners",
+      intro: "Artificial Intelligence for Beginners - A Curriculum",
+      link: "https://microsoft.github.io/AI-For-Beginners/",
       avatar: "/img/favicon.png"
     }
     - {
-      title: "Fluid Repo",
-      intro: "主题 GitHub 仓库",
-      link: "https://github.com/fluid-dev/hexo-theme-fluid",
+      title: "Neural Networks: Zero to Hero",
+      intro: "A course by Andrej Karpathy on building neural networks, from scratch, in code.",
+      link: "https://karpathy.ai/zero-to-hero.html",
+      avatar: "/img/favicon.png"
+    }
+    - {
+      title: "Project Gutenberg",
+      intro: "Project Gutenberg is a library of over 70,000 free eBooks",
+      link: "https://www.gutenberg.org/",
       avatar: "/img/favicon.png"
     }
 
