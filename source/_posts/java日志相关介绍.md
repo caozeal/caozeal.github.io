@@ -92,9 +92,9 @@ logback则是继承自log4j，增加了异步logger、filter等特性。
 
 下面放两个各框架间的关系图来感受下：
 
-![img](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9b8c5657c8c6459bb69cdb1a47f5ba31~tplv-k3u1fbpfcp-zoom-1.image)
+![img](../resources/java日志/java日志.png)
 
-![img](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e9f94ee41741464f96660e8f17599316~tplv-k3u1fbpfcp-zoom-1.image)
+![img](../resources/java日志/日志框架.webp)
 
 下面以SLF4J和Logback为例来讲一下日志框架使用：
 
@@ -144,12 +144,12 @@ logback则是继承自log4j，增加了异步logger、filter等特性。
 - 配置文件语法:
 
   - 结构：`<configuration>`元素、0个或多个 `<appender>`元素、0个或多个 `<logger>`元素、最多一个 `<root>`元素
-  - ![logback配置](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/15d1a8472a164a189b5f7ec8d1ac799d~tplv-k3u1fbpfcp-zoom-1.image)
+  - ![logback配置](../resources/java日志/3.image)
   - 标签名大小写敏感
 - `<configuration>`：logback 将写入日志事件的任务委托给一个名为 appender 的组件。
 
   - `debug`：控制是否输出logback本身的一些状态信息
-  - ![logback状态信息.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6cec692a0f6a4100abd07f8f33a00365~tplv-k3u1fbpfcp-zoom-1.image)
+  - ![logback状态信息.png](../resources/java日志/4.image)
   - `scan="true" `当配置文件更改时，自动加载配置，默认扫描间隔1min
   - `scanPeriod="30 seconds"`每30s自动扫描一次配置看是否有更改
 - `<statusListener>`：状态信息监听器
@@ -174,10 +174,10 @@ logback则是继承自log4j，增加了异步logger、filter等特性。
     ```
 - `<appender>`：
 
-  - ![appenderSyntax](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/78787dfc2b2d409babebade0fd4d1fd1~tplv-k3u1fbpfcp-zoom-1.image)
+  - ![appenderSyntax](../resources/java日志/5.image)
   - `name`：appender的名字，用于下文logger或root引用
   - `class`：appender所采用的具体类
-    - ![appenderClassDiagram](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/aa997b3dc3f84919bb98baf4d692546b~tplv-k3u1fbpfcp-zoom-1.image)
+    - ![appenderClassDiagram](../resources/java日志/6.image)
     - `ch.qos.logback.core.ConsoleAppender`：将日志事件附加到控制台，就是通过 *System.out* 或者 *System.err* 来进行输出。默认通过前者。
     - `ch.qos.logback.core.rolling.RollingFileAppender`：将日志事件输出到文件中。通过 `file` 来指定目标文件。在满足了特定的条件之后，将日志输出到另外一个文件。
   - `filter`
