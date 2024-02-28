@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>《个人博客部署以及域名配置》</title>
+    <link href="/2024/02/28/%E5%8D%9A%E5%AE%A2/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E4%BB%A5%E5%8F%8A%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE/"/>
+    <url>/2024/02/28/%E5%8D%9A%E5%AE%A2/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E4%BB%A5%E5%8F%8A%E5%9F%9F%E5%90%8D%E9%85%8D%E7%BD%AE/</url>
+    
+    <content type="html"><![CDATA[<h1 id="个人博客部署以及域名配置"><a href="#个人博客部署以及域名配置" class="headerlink" title="个人博客部署以及域名配置"></a>个人博客部署以及域名配置</h1><h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>博客挺久之前就弄了，不过写的文章比较少。最初是用的github pages，github pages的访问速度在国内不是很理想，时常会出现访问不了的情况。后面脑袋一抽，买了个域名，然后接触到了cloudflare，就把域名解析到了cloudflare，使用cloudflare的cdn加速，访问速度有了一些提升。找了几个朋友测试，反馈第一次访问速度还是有点慢，后面会好一些。<br>最近在github上看到了chat-gpt-next-web，使用了vercel，所以就折腾了下，也用vercel部署了博客，然后通过cloudflare，现在国内访问速度还是可以的。这篇文章主要是记录一下博客的部署过程，以及域名的配置过程。</p><h2 id="二、vercel"><a href="#二、vercel" class="headerlink" title="二、vercel"></a>二、vercel</h2><blockquote><p>Vercel is a platform for developers that provides the tools, workflows, and infrastructure you need to build and deploy your web apps faster, without the need for additional configuration.</p></blockquote><blockquote><p>Vercel 是一个为开发者提供工具、工作流和基础设施的平台，可以让你更快地构建和部署你的 Web 应用，而无需额外的配置。</p></blockquote><p>vercel官网：<a href="https://vercel.com/">https://vercel.com/</a>，可以直接使用github账号登录。</p><h3 id="1-部署"><a href="#1-部署" class="headerlink" title="1. 部署"></a>1. 部署</h3><p>因为之前已经有了github pages，所以我们可以直接通过vercel部署。Add New -&gt; Project -&gt; 选择自己的git repository -&gt; Import<br>自动识别出了Hexo, 都采用默认配置，然后Deploy。不出意外的话，出了意外，部署失败了。想到hexo 的deploy branch默认是gh-pages，vercel部署了master分支，所以我们需要修改一下。在vercel的项目中，Settings -&gt; Git -&gt; Production Branch -&gt; gh-pages -&gt; Save。</p><p><img src="/../../resources/blog/vercel_brach.png" alt="vercel_branch"></p><p>回头重新部署，却发现部署的还是master，这时注意到<code>Production Brach</code>下有一行字</p><blockquote><p>By default, every commit pushed to the main branch will trigger a Production Deployment instead of the usual Preview Deployment. You can switch to a different branch here.</p></blockquote><blockquote><p>默认情况下，每次推送到主分支的提交都会触发生产部署，而不是通常的预览部署。您可以在这里切换到不同的分支。</p></blockquote><p>生产分支的部署可以通过推送到主分支来触发，二话不说，直接推送到主分支，这时候多出了两条Deployment记录，一条是Preview Deployment，一条是Production Deployment。Production Deployment即是使用了gh-pages分支。</p><p>这时候的错误变成了<code>sh: hexo: command not found</code><br>gp-pages分支通过github的action生成，已经普通的前端静态资源了，无需再使用hexo预设框架，修改Settings -&gt; Build &amp; Development Settings -&gt; Framework Preset 为Other, 重新部署成功。</p><p><img src="/../../resources/blog/vercel_success.png" alt="vercel_success"></p><blockquote><p>注：我主要是为了同时能使用github pages和vercel，所以使用了gh-pages，如果只是使用vercel，完全可以新建github repository，直接使用master分支。</p></blockquote><h3 id="2-优化"><a href="#2-优化" class="headerlink" title="2. 优化"></a>2. 优化</h3><h4 id="a-域名配置"><a href="#a-域名配置" class="headerlink" title="a. 域名配置"></a>a. 域名配置</h4><p>vercel部署成功后，会有一个网址，（中国大陆地区用户）直接访问这个地址的话，会发现访问不通的情况，这是因为vercel部署的服务都被dns污染了，所以我们管理域名的dns记录，将域名解析到vercel。Settings -&gt; Domains  -&gt; 输入域名 -&gt; Add, 我之前操作过了，这里使用test域名。<br><img src="/../../resources/blog/vercel_domain.png" alt="vercel_domain"></p><p>添加成功后，会有一个CNAME记录，将这个记录添加到域名的dns记录中，这里使用cloudflare，添加CNAME记录，Content填写<code>cname.vercel-dns.com</code>，保存后发现仍然无法访问，那看来<code>cname.vercel-dns.com</code>这个地址不能直接使用，搜索网络发现，中国大陆地区用户可以使用<code>cname-china.vercel-dns.com</code>，修改CNAME记录，保存。<br><img src="/../../resources/blog/cloudflare_cname.png" alt="cloudflare_cname"></p><h4 id="b-重定向"><a href="#b-重定向" class="headerlink" title="b. 重定向"></a>b. 重定向</h4><p>配置好后，访问报了重定向次数过多的问题，这是因为cloudflare的ssl配置问题，需要将cloudflare的ssl配置为<code>Full</code>或者<code>Full(strict)</code>，这里使用<code>Full</code>，保存后，访问成功。<br><img src="/../../resources/blog/cloudflare_ssl.png" alt="cloudflare_ssl"></p><p><img src="/../../resources/blog/blog.png" alt="blog"></p><h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>这篇文章记录了下博客的部署过程，以及域名的配置过程，主要是使用了github pages，vercel，cloudflare。测试了一下，国内访问速度还是可以的，后续持续观察。</p><p>欢迎大家访问：<a href="https://blog.caozeal.cn/">傲然绝唳的小栈</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>博客</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>LangChain学习笔记（一）</title>
     <link href="/2023/07/01/LangChain%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
     <url>/2023/07/01/LangChain%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/</url>
