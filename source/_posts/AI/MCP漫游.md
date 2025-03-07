@@ -44,7 +44,7 @@ MCP定义了三个主要角色：
 2. Client: Host应用中的连接器，与服务器保持 1:1 连接
 3. Server: 通过标准化的MCP暴露特定功能的轻量级程序
 
-host通过client连接到server，大模型决策当前会话需要执行哪个serer的哪个命令，server负责处理数据的获取和处理。其中，client 于server之间的通信是通过MCP协议进行的。
+host通过client连接到server，大模型决策当前会话需要执行哪个serer的哪个命令，server负责处理数据的获取和处理。其中，client 与server之间的通信是通过MCP协议进行的。
 目前server仅支持本地服务，更像是一个插件，即插即用。
 
 ### MCP试用
