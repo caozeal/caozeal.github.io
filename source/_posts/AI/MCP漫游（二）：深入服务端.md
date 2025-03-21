@@ -12,7 +12,7 @@ excerpt: 本文将探讨MCP Server, 并介绍如何实现一个简单的MCP Serv
 
 # MCP漫游（二）：深入服务端
 
- 1. [MCP漫游](./MCP漫游.md)
+ 1. [MCP漫游](../MCP漫游.md)
 
  上文对MCP有了个整体的理解，本文将深入探讨MCP Server, 并照着示例实现一个简单的MCP Server。
 
