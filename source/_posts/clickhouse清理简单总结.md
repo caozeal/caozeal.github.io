@@ -15,7 +15,7 @@ GROUP BY database, table
 ORDER BY sum(bytes_on_disk) DESC
 ```
 
-![[Pasted image 20250512154446.png]]
+![](../resources/ck/clickhouse_1.png)
 
 2. 查询结果如上，query_thread_log，query_log是 ClickHouse 的系统操作日志表，占用空间很大，基本可以判断是**日志保留时间过长或配置异常**导致的。
 
@@ -44,7 +44,7 @@ cd ${ck_home}/data/system/query_thread_log
 ls
 ```
 可以看到如下目录（看起来一直没有清理过）：
-![[Pasted image 20250512155534.png]]
+![](../resources/ck/clickhouse_2.png)
 6. 同样地，`query_log`也可以清理
 
 7. 进一步，可以创建定时任务，来定时清理过期的日志文件，保持磁盘空间。
