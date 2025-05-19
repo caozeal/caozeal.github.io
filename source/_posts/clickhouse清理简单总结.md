@@ -1,4 +1,10 @@
-## clickhouse清理简单总结
+---
+title: clickhouse清理简单总结
+date: 2025-05-19 15:44:47
+tags: clickhouse
+excerpt: 背景：clickhouse磁盘占用过大，需要清理以腾出可用空间，对clickhouse不太熟悉，记录一下处理过程，以供参考
+---
+# clickhouse清理简单总结
 
 > 背景：clickhouse磁盘占用过大，需要清理以腾出可用空间，对clickhouse不太熟悉，记录一下处理过程，以供参考
 
@@ -56,3 +62,4 @@ TRUNCATE TABLE system.query_log;
 
 -- 清空 query_thread_log 表
 TRUNCATE TABLE system.query_thread_log;
+```
