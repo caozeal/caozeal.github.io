@@ -21,7 +21,7 @@ excerpt: Code Agent是通向AGI的一个核心阶段，万物互联，皆以程�
 
 一方面，Code Agent是通向AGI的一个核心阶段，万物互联，皆以程序驱动，编码赋予AI通向一切互联网可达之触手；另一方面，逐步脱离IDE的AI Code Agent形态降低了更多非编程从业人员的入门门槛，丰富的想象力、各行业清晰的洞察力、独树一帜的见解与敢于人先的尝试精神成为创造的核心能力，编码不再是拦路虎，一切皆有可能。
 
-![AI Coding 工具发展时间线](../../assets/Pasted%20image%2020260203161059.png)
+![AI Coding 工具发展时间线](../../resources/ai-coding/Pasted%20image%2020260203161059.png)
 
 > 图片源自网络
 
@@ -31,11 +31,11 @@ AI Coding工具早不是那个只能产出玩具代码的时代了，针对大�
 
 [fast3d](https://fast3d.io/)
 
-![Fast3D - AI 生成的 3D 建模工具](../../assets/PixPin_2026-02-03_16-21-39.png)
+![Fast3D - AI 生成的 3D 建模工具](../../resources/ai-coding/PixPin_2026-02-03_16-21-39.png)
 
 [raphael](https://raphael.app/)
 
-![Raphael - AI 生成的设计工具](../../assets/PixPin_2026-02-03_16-23-36%201.png)
+![Raphael - AI 生成的设计工具](../../resources/ai-coding/PixPin_2026-02-03_16-23-36%201.png)
 
 在AI的加持下，非程序员的研发能力迅速追上程序员"正规军"，基于个人对AI工具的使用能力，研发能力上限被无限拉高，甚至能超过大部分不会使用AI的开发。码农的红利 or 末日？时代确实变了。
 
@@ -49,13 +49,13 @@ AI Coding工具早不是那个只能产出玩具代码的时代了，针对大�
 
 ### 2.2 协作架构
 
-![Claude Code 工作流程示意图](../../assets/PixPin_2026-02-03_16-42-00.png)
+![Claude Code 工作流程示意图](../../resources/ai-coding/PixPin_2026-02-03_16-42-00.png)
 
-![多 Agent 协作架构图](../../assets/PixPin_2026-02-03_18-25-04.png)
+![多 Agent 协作架构图](../../resources/ai-coding/PixPin_2026-02-03_18-25-04.png)
 
 ### 2.3 安装与配置
 
-CC 的安装可以参考：[cc 自定义 API 接入及安装指南](claude-code-install.html)
+CC 的安装可以参考：[cc 自定义 API 接入及安装指南](/html/ai/claude-code-install.html)
 
 VSCode 及其衍生 IDE（cursor、antigravity、kiro、trae 等）直接通过扩展市场安装，然后参考上述修改配置文件即可。
 
@@ -119,7 +119,7 @@ VSCode 及其衍生 IDE（cursor、antigravity、kiro、trae 等）直接通过�
 
    CC CLI 比 CC 插件更灵活，可以在任意地方唤起，并且在 CC 中能够使用 `!` 来切换到 bash 模式
 
-   ![Claude Code CLI Bash 模式](../../assets/PixPin_2026-02-04_09-21-48.png)
+   ![Claude Code CLI Bash 模式](../../resources/ai-coding/PixPin_2026-02-04_09-21-48.png)
 
 6. **多场景应用能力**
 
