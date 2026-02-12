@@ -1,6 +1,8 @@
 ---
 title: 我的 AI Coding 工具选择与实践
 date: 2026-02-12 14:00:00
+index_img: ../../resources/ai-coding/claude_code.png
+banner_img: ../../resources/ai-coding/claude_code.png
 categories:
   - AI
 tags:
