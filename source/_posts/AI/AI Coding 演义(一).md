@@ -1,0 +1,99 @@
+---
+title: AI Coding 演义（一）：AI Coding 为什么不再只是插件
+date: 2026-03-12 16:55:00
+index_img: ../../resources/ai-coding/ai-coding-yanyi-1-cover.png
+banner_img: ../../resources/ai-coding/ai-coding-yanyi-1-cover.png
+categories:
+  - AI
+tags:
+  - AI Coding
+  - Copilot
+  - Cursor
+  - Kilo Code
+  - Coding
+excerpt: 回头看 Copilot、Cursor、Cline 与 Kilo Code 这条线，会发现 AI Coding 的变化，不只是模型升级，而是它和人写代码的关系变了。
+---
+
+# AI Coding 演义(一)：AI Coding 为什么不再只是插件
+
+我认真开始用 AI 写代码，差不多也是 ChatGPT 爆火之后。
+这几年一路用下来，从 Copilot 到 Cursor，再到后来的 Cline、Kilo Code，回头再看这些工具，会发现 AI Coding 的变化其实特别明显：它已经不是“帮你补两行代码”那么简单了，甚至于已经远远超脱了 Coding 的范畴，AI Anything。
+
+想借这个时机，梳理总结一下自己经历过使用过的工具以及看法，仅以自己的视角来描述，必然会有很多的局限性与偏颇，但也能一窥 AI 演化的道路，供自己和大家作个参考。
+
+我想先从 Copilot、Cursor 和后来的 Cline / Kilo Code 讲起，我们能看到 AI Coding 的演进，不只是模型升级，而是交互形态在变：从插件式辅助，到 IDE 级接管，再到成本与可用性的重新平衡。
+
+## 一、GPT 一马当先，微软率先布局
+
+不得不说，微软在 AI Coding 领域布局已久。2018 年收购 GitHub，2019 年投资 OpenAI，随后的 2021 年便发布了 GitHub Copilot，不过彼时仍没有这么大的影响力。
+我真正开始关注 Copilot，也是在 GPT 爆火之后。到 2023 年前后，Copilot 的整体体验已经明显上了一个台阶，依托 GitHub 庞大的开源项目代码，在同时期产品中表现了惊艳的能力。其作为插件的灵活性，也让使用各种 IDE 的开发者都能很便捷地接触进而使用。
+
+> What is GitHub Copilot?
+>
+> GitHub Copilot is an AI coding assistant that helps you write code faster and with less effort, allowing you to focus more energy on problem solving and collaboration.
+>
+> GitHub Copilot 是一款 AI 编程助手，能助您更高效、更轻松地编写代码，让您将更多精力集中于问题解决与团队协作。
+
+说实话，现在已经很难完整回忆当时具体都用了哪些功能了，但印象最深的大概还是这三点：
+1. **智能补全更准了。** 相比传统的自动补全，智能补全更准确，一次补全的也更多。
+2. **可以先写注释，再让它补实现。** 当时的 AI 编程能力还没有进化那么强，上下文关联能力也很弱。小型算法或者工具代码级别的生成尚能胜任，整个功能流程的实现还不大现实。
+3. **和 AI 对话方便多了。** 不用再去网页中找 ChatGPT 了，粘贴错误信息，与 AI 沟通交流变得更便捷，省去了切换窗口的复杂性，代码特化的 Copilot 也相对更专业，更有针对性。
+
+此时，受到 ChatGPT 的冲击，全球最出名的程序员代码问答平台 Stack Overflow 已经到了危险的边缘。AI 编程进入主流 IDE 工作流，AI 编程开始挑战“古法编程”，我也在那时候慢慢从 IntelliJ IDEA 切了出来。
+
+![Stack Overflow 受到 AI 冲击](../../resources/ai-coding/ai-coding-yanyi-1-stackoverflow.png)
+
+## 二、Tab, Tab, Tab
+
+在大家都默认 AI 编程只是辅助，仅仅以 IDE 插件发布的时候，Cursor 站出来了，打破了 JetBrains 编程全家桶的霸权。
+
+> Cursor 是一款 AI 编辑器与编程助手。只需用自然语言描述您想要构建或修改的内容，Cursor 便能为您编写代码。
+
+Cursor 最出名也是最好用的，莫过于它的 Tab 代码预测，在当时可谓是降维打击。当时的 Copilot 除了补全更智能一些、补全代码更多一些，其他的与传统补全并无太大区别，仅能在鼠标光标处给出提示；而 Cursor 会预测你任何有可能会修改的地方给出修改提示，你只需 Tab，Tab，Tab 即可，这对于修改字段尤为方便（再也不用检查代码一个一个修改了，也无须担心 mapper 文件之类的改漏字段）。
+
+> Tab 是用于自动补全的专用 Cursor 模型。你用得越多，它就会变得越聪明，因为你通过接受 `Tab` 或拒绝 `Escape` 的建议来传达意图。使用 Tab，你可以：
+>
+> - 一次修改多行
+> - 自动补全缺失的 import 语句
+> - 在文件内及跨文件跳转以进行协同编辑
+> - 基于最近的更改、linter 错误和已接受的编辑获得建议
+
+Cursor 的出现进一步拓展了 AI 编程的边界，此时已有很多略懂编程的跨界人士开始投入编程创作中来，借着 AI 带来的便利拓展自己的能力范围，网络也开始唱衰程序员，人人编程的时代似乎已经不远了。
+如果说 Copilot 让我第一次觉得 AI 编程“能用”，那 Cursor 则让我第一次感觉，AI 开始主动参与修改代码，而不只是等着我在光标处触发它。
+
+## 三、成本优先 - deepseek 时刻
+
+很多人聊 AI Coding，只盯着能力上限，但对普通开发者和个人用户来说，成本其实会直接决定你能不能长期用下去。
+
+GitHub Copilot 月套餐最低 10 美元，Cursor 月套餐最低 20 美元，除了无限试用大法外，是否有更实惠的 AI 编程途径呢？有的，2025 年初，DeepSeek 一炮而红，以其开源、思维链与绝对的性价比火爆海内外，随后的 DeepSeek-V3-0324 更是使得其成为物美价廉的一个选择。
+配合着 Cline 系列插件的崛起，已经可以在极度廉价的选择下与 Cursor 掰一掰手腕。
+
+### Cline 系列
+
+```mermaid
+graph LR
+    A[Cline] -->|forked| B[Roo Code]
+    B -->|forked| C[Kilo Code]
+```
+
+Kilo Code 插件
+
+![Kilo Code 插件界面](../../resources/ai-coding/ai-coding-yanyi-1-kilo-code.png)
+
+Cline 系列最终还存活在我开发环境中的是 Kilo Code，它目前有几个不可替代的优势：
+1. 虽然当前环境以 Claude Code 等为主，但是总归有一些便宜（或公益）渠道的接口不兼容，可以配置到插件中使用。
+2. Kilo Code 可以一键生成 commit message，并且能指定生成的 prompt，也就是可以规定提交信息的格式等，我们也可以选择更便宜快速的模型去完成这一任务。
+3. Kilo Code 使用了 RAG 技术，对代码预建立了索引，某些时候有奇效。
+4. Kilo Code 也支持代码自动补全，经过几次迭代后限制了自动补全模型，使用得比较少。
+
+所以直到今天，即使主力环境已经切到 Claude Code 一类工具，我还是会把 Kilo Code 留在环境里，因为它在兼容性、低成本模型接入和某些轻量任务上，依然有自己的位置。
+
+除了 DeepSeek 本身便宜之外，插件的崛起离不开（当时）有着大量途径让我们免费（或者极低的价格）使用模型，经典的 OpenRouter（当时很慷慨，DeepSeek、GLM、Kimi 都曾长期免费，逐步收紧后，目前仅剩几款很鸡肋的模型），国内的 iflow、ModelScope 等，足够日常使用。
+
+## 四、最后
+
+AI Coding 从能用，开始往高性价比、好用两个方面不断发展，已经完全回不去“古法编程”的时代了，未来已来。
+
+回头看这一段变化，AI Coding 真正改变的，不只是代码补全效果，而是它在开发流程里的角色。它先是插件，后来变成 IDE 的核心能力，再后来又开始在成本和可用性之间找到新的平衡。
+
+我们熟悉的 Claude Code、Gemini CLI、Codex 等终端工具，也开始逐步登场，AI Coding 又进入了一个新的阶段。
