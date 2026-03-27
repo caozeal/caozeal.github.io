@@ -6,9 +6,9 @@
     "node": ">=20.x"
   },
   "scripts": {
-    "build": "hexo generate",
+    "build": "npm run clean && hexo generate",
     "clean": "hexo clean",
-    "deploy": "hexo deploy",
+    "deploy": "npm run build && hexo deploy",
     "server": "hexo server"
   },
   "hexo": {
