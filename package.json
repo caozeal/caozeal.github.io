@@ -9,6 +9,8 @@
     "build": "npm run clean && hexo generate",
     "clean": "hexo clean",
     "deploy": "npm run build && hexo deploy",
+    "deploy:aliyun": "bash ./ops/deploy-aliyun.sh",
+    "rollback:aliyun": "bash ./ops/rollback-aliyun.sh",
     "server": "hexo server"
   },
   "hexo": {

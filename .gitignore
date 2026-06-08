@@ -9,3 +9,6 @@ _multiconfig.yml
 .obsidian/
 .ace-tool/
 .vscode/
+
+docs/
+ops/
