@@ -1,8 +1,8 @@
 ---
 title: 我的 AI Coding 工具选择与实践
 date: 2026-02-12 14:00:00
-index_img: ../../resources/ai-coding/claude_code.png
-banner_img: ../../resources/ai-coding/claude_code.png
+index_img: ../../resources/ai-coding/claude_code.jpg
+banner_img: ../../resources/ai-coding/claude_code.jpg
 categories:
   - AI
 tags:
@@ -33,11 +33,11 @@ AI Coding工具早不是那个只能产出玩具代码的时代了，针对大�
 
 [fast3d](https://fast3d.io/)
 
-![Fast3D - AI 生成的 3D 建模工具](../../resources/ai-coding/PixPin_2026-02-03_16-21-39.png)
+![Fast3D - AI 生成的 3D 建模工具](../../resources/ai-coding/PixPin_2026-02-03_16-21-39.jpg)
 
 [raphael](https://raphael.app/)
 
-![Raphael - AI 生成的设计工具](../../resources/ai-coding/PixPin_2026-02-03_16-23-36%201.png)
+![Raphael - AI 生成的设计工具](../../resources/ai-coding/PixPin_2026-02-03_16-23-36%201.jpg)
 
 在AI的加持下，非程序员的研发能力迅速追上程序员"正规军"，基于个人对AI工具的使用能力，研发能力上限被无限拉高，甚至能超过大部分不会使用AI的开发。码农的红利 or 末日？时代确实变了。
 
@@ -51,9 +51,9 @@ AI Coding工具早不是那个只能产出玩具代码的时代了，针对大�
 
 ### 2.2 协作架构
 
-![我的Claude Code 工作流程示意图](../../resources/ai-coding/PixPin_2026-02-03_16-42-00.png)
+![我的Claude Code 工作流程示意图](../../resources/ai-coding/PixPin_2026-02-03_16-42-00.jpg)
 
-![多 Agent 协作架构图](../../resources/ai-coding/PixPin_2026-02-03_18-25-04.png)
+![多 Agent 协作架构图](../../resources/ai-coding/PixPin_2026-02-03_18-25-04.jpg)
 
 ### 2.3 安装与配置
 

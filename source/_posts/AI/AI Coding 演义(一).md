@@ -1,8 +1,8 @@
 ---
 title: AI Coding 演义（一）：AI Coding 为什么不再只是插件
 date: 2026-03-12 16:55:00
-index_img: ../../resources/ai-coding/ai-coding-yanyi-1-cover.png
-banner_img: ../../resources/ai-coding/ai-coding-yanyi-1-cover.png
+index_img: ../../resources/ai-coding/ai-coding-yanyi-1-cover.jpg
+banner_img: ../../resources/ai-coding/ai-coding-yanyi-1-cover.jpg
 categories:
   - AI
 tags:

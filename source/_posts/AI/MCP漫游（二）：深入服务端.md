@@ -69,18 +69,18 @@ brew install --cask block-goose
 
 Goose Desktop中提供了Extensions管理功能，可以方便地管理。`Settings -> Extensions`中我们可以看到已经启用了几个默认的插件， 点击`Broswe`可以浏览更多。
 
-![Goose Desktop Extensions](../../resources/ai/mcp2_goose_extension.png)
+![Goose Desktop Extensions](../../resources/ai/mcp2_goose_extension.jpg)
 
 ### 5. 使用
 
 我们照例，问一句：“你会做什么？”
 
-![Goose Desktop 使用](../../resources/ai/mcp2_goose_start.png)
+![Goose Desktop 使用](../../resources/ai/mcp2_goose_start.jpg)
 
 嗯，听起来会的还挺多。
 - 搜索最近关于人工智能突破的近期新闻，并总结关键发现
 
-![Goose Desktop 搜索新闻](../../resources/ai/mcp2_goose_search.png)
+![Goose Desktop 搜索新闻](../../resources/ai/mcp2_goose_search.jpg)
 
 成功搜索并总结关键发现，顺便夸了一下中国。
 

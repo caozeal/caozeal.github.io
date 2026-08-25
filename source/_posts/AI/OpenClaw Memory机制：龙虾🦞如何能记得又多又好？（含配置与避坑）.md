@@ -38,7 +38,7 @@ OpenClaw 其实有一套“可验证”的记忆系统：文件记忆（MEMORY/d
 
 但需要注意的是，不加控制的话，MEMORY文档中越来越多，可能会造成恐怖的上下文增长，对钱包和效率上来说成为压力，我们可以使用心跳机制（HEARTBEAT） 或者 定时任务 （CRON）让他们定时整理记忆，增大组织效率，也可以利用上述机制，将每日记忆中有价值的定时存入长期记忆中。
 
-![](../../resources/openclaw-memory/3.png)
+![](../../resources/openclaw-memory/3.jpg)
 
 
 ## 二、Memory检索

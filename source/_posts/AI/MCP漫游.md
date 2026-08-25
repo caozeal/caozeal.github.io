@@ -95,14 +95,14 @@ claude desktop的配置方法：
 - User: 查找sqlite中的模型信息，并进行分类统计
 - Agent: 
 
-![cursor mcp demo](../../resources/ai/mcp_cursor_demo.png)
+![cursor mcp demo](../../resources/ai/mcp_cursor_demo.jpg)
 
 从图中可以看到，cursor agent通过MCP协议成功连接到了sqlite server，并且成功查询并进行了分析。同样地，我们添加filesystem-server，并让AI操作文件
 
 - User: 找出你认为性价比最高的五个模型，并导出为csv格式保存到桌面上
 - Agent:
 
-![cursor mcp demo](../../resources/ai/mcp_cursor_save.png)
+![cursor mcp demo](../../resources/ai/mcp_cursor_save.jpg)
 
 此时打开桌面，已经生成了一个csv文件，并自动命名成了“top_cost_effective_models.csv”,打开文件，成功导出了五条数据，并在最后一列主动加入了理由。
 
