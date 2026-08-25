@@ -4,6 +4,60 @@
   
   
   <entry>
+    <title>为什么我推荐 Orca?</title>
+    <link href="/2026/08/21/AI/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E6%8E%A8%E8%8D%90Orca/"/>
+    <url>/2026/08/21/AI/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E6%8E%A8%E8%8D%90Orca/</url>
+    
+    <content type="html"><![CDATA[<h1 id="为什么我推荐-Orca？"><a href="#为什么我推荐-Orca？" class="headerlink" title="为什么我推荐 Orca？"></a>为什么我推荐 Orca？</h1><p>我已经连续使用 Orca 一个多月，并逐渐把大部分 AI Coding 工作迁移到了这里。</p><p>我推荐它，不是因为 Orca 又提供了一个和 Agent 对话的界面，而是因为当 Codex、Claude Code、OpenCode 同时进入工作流后，真正麻烦的已经不是“怎么让 Agent 写代码”，而是怎么管理任务、Worktree、终端和远程执行。</p><p>Orca 解决的正是这一层问题：它本身不提供模型能力，而是站在多个 Coding Agent 之上，负责把原本散落的工作流组织起来。</p><h2 id="一、Orca-是什么？"><a href="#一、Orca-是什么？" class="headerlink" title="一、Orca 是什么？"></a>一、Orca 是什么？</h2><blockquote><p>Orca 官方将它定义为“面向 100x 构建者的 AI 编排器”：可以并排运行 Codex、Claude Code、OpenCode 或 Pi，让每个 Agent 在自己的 Worktree 中工作，并在一个地方统一跟踪。</p></blockquote><p>如果只看产品形态，Orca 很像是把多个 Agent 终端放进了一个桌面应用。但实际用下来，它真正有价值的地方不是“多开几个终端”，而是将项目、任务、 Worktree 和 Agent 组织成了一套完整的工作流。</p><p>传统的做法是自己打开几个终端，分别进入不同目录，再手动记住每个 Agent 在做什么、改了哪些文件。当任务只有一个时，这种方式当然没有问题；但当我开始同时使用多个 Agent，这些原本零散的细节就会变成额外的管理成本。</p><p>所以 Orca 给我的感受并不是“多了一个对话界面”，而是给这些 Agent 补上了一层统一的工作组织。</p><p>我推荐它，主要是因为这几点：</p><ul><li><strong>跨 Agent 编排与统一管理</strong></li><li><strong>多 Worktree 并行工作</strong></li><li><strong>远程执行与指挥</strong>：远程 Orca 服务器、SSH 以及移动端 Orca Relay</li></ul><p>这些能力的具体使用方式，我会放到后面的文章中分别展开。这篇先说清楚一件事：<strong>Orca 本身不提供 Agent 或模型能力，但它能让多 Agent 工作流更容易组织和管理。</strong></p><p>它更适合愿意阅读 Diff、关注提交并管理 Worktree 的开发者，不适合寻找无代码工具，或者希望 AI 完全代替工程判断的人。</p><p>如果你已经在使用 Codex、Claude Code 或其他 Coding Agent，又希望把多个任务放在一个清晰的工作流里管理，那么 Orca 值得亲自试一下。下面先从最基础的安装和项目创建开始。</p><p><img src="/resources/why-orca/PixPin_2026-08-03_19-46-03.png" alt="PixPin_2026-08-03_19-46-03"></p><h2 id="二、安装和使用"><a href="#二、安装和使用" class="headerlink" title="二、安装和使用"></a>二、安装和使用</h2><blockquote><p><a href="https://www.onorca.dev/">https://www.onorca.dev</a></p></blockquote><p>我们可以访问 Orca 官网下载安装。安装好后就可以看到主界面，我们先来管理一下智能体“团队”（设置 -&gt; 智能体）：<br><img src="/resources/why-orca/PixPin_2026-08-10_10-09-16.png" alt="PixPin_2026-08-10_10-09-16"></p><p>这里可以看到已经安装的智能体，并且可以对这些 Agent 进行一些基础设置。</p><p>然后，我们可以在主界面左上角的 Projects 处添加项目：</p><p><img src="/resources/why-orca/PixPin_2026-08-10_10-06-32.png" alt="PixPin_2026-08-10_10-06-32"></p><p>接着，可以选择新建 Worktree，或者直接在当前空间中新建 Agent。完成后，就可以像平时一样与 Agent 对话了。</p><p><img src="/resources/why-orca/PixPin_2026-08-10_10-11-47.png" alt="PixPin_2026-08-10_10-11-47"></p><p>如果你不习惯命令行模式，也可以使用对话界面，左上角可以切换这两种模式。</p><p><img src="/resources/why-orca/PixPin_2026-08-11_11-20-06.png" alt="PixPin_2026-08-11_11-20-06"></p><p>我想吐槽的一点是它的宠物功能。这也是当下各大 Agent 陆续推出的辅助功能，可以用来提醒任务，也增加一点乐趣。我们可以在“实验性”中打开，使用默认宠物，或者自制并从 Codex 中导入。</p><p><img src="/resources/why-orca/PixPin_2026-08-11_12-01-46.png" alt="PixPin_2026-08-11_12-01-46"></p><p>不同于 Codex，Orca 的宠物无法脱离窗口，且动作判定也比较奇怪，导致宠物会一直跑动。可能是直接从 Codex 导入的原因，实际体验不是很好。</p><h2 id="三、最后"><a href="#三、最后" class="headerlink" title="三、最后"></a>三、最后</h2><p>Orca 更像是把多个 Agent 管理起来的工作台。偶尔用一次 Agent，可能感觉不到它的价值；但如果你已经开始并行使用 Codex、Claude Code、OpenCode，Orca 确实能省下不少管理上的麻烦。</p><p>后面我会再详细介绍我认为更重要的功能：Agent 编排、移动端 Relay、Orca 服务端、 浏览器控制等等，以及其他实际使用中的体验。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>AI</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Orca</tag>
+      
+      <tag>工具</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>DeepSeek Harness 初体验</title>
+    <link href="/2026/08/14/AI/DeepSeek%20Harness%E5%88%9D%E4%BD%93%E9%AA%8C/"/>
+    <url>/2026/08/14/AI/DeepSeek%20Harness%E5%88%9D%E4%BD%93%E9%AA%8C/</url>
+    
+    <content type="html"><![CDATA[<p>多次听到DeepSeek Harness（dsh）的消息传出，直到8月13日终于发布V0.1开发者预览版，DeepSeek一直是能给人惊喜的，我们也一起来体验一下。</p><h2 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h2><p>如果你已经在使用了其他Agent（如Codex, Claude Code, OpenClaw等），安装还是比较容易的，可以把git项目（<a href="https://github.com/deepseek-ai/deepseek-harness%EF%BC%89%E7%9B%B4%E6%8E%A5%E4%B8%A2%E7%BB%99%E5%AE%83%E8%AE%A9%E5%AE%83%E5%AE%89%E8%A3%85%EF%BC%8C%E6%88%96%E8%80%85%E7%9B%B4%E6%8E%A5%E6%89%A7%E8%A1%8C%60npx">https://github.com/deepseek-ai/deepseek-harness）直接丢给它让它安装，或者直接执行`npx</a> @deepseek-ai&#x2F;dsh web&#96;命令来使用。</p><p>安装后浏览器访问 <a href="http://127.0.0.1:3080/">http://127.0.0.1:3080</a> 便能打开 Web UI，可以看到内测声明，也就是当前主要面向的对象是开发者，不适合希望一键安装、稳定使用Agent的用户，还有很多需要折腾的元素在里边。</p><p><img src="/resources/dsh-first-look/PixPin_2026-08-14_09-27-36.png" alt="PixPin_2026-08-14_09-27-36"></p><p>我们按照提示输入API Key, 便进入了对话主界面。<br><img src="/resources/dsh-first-look/PixPin_2026-08-14_09-33-18.png" alt="PixPin_2026-08-14_09-33-18"></p><h2 id="二、一切皆插件：底座的地基"><a href="#二、一切皆插件：底座的地基" class="headerlink" title="二、一切皆插件：底座的地基"></a>二、一切皆插件：底座的地基</h2><p>它和市面上已经成熟的Agent有什么不同呢？回头看dsh官网，赫然五个大字 —— 一切皆插件，这是和其他Agent打出差异化的关键点。</p><blockquote><p>DeepSeek Harness 基于具有时空可组合性的 Cordis 插件系统构建。Cordis 元框架只负责插件的加载与卸载以及依赖关系，Agent Harness 的所有具体组件都是不同的 Cordis 插件。插件通过 Cordis 服务与事件彼此协作，并可以在配置层自由组合。</p></blockquote><p>和它最像的感觉是 Pi Agent，但又有不同，Pi Agent 是把 Agent 本身做的尽量精简，更多的功能通过插件来丰富，<strong>Pi Agent 的“插件”</strong>：是<strong>功能扩展包</strong>。插件通过基座预留的“钩子”（Hooks）来介入工作流，但不能改变基座引擎本身的运行机制。而dsh的插件是一等公民，插件可以重写基座的任何行为，甚至可以替换Agent循环本身。插件之间可以互相依赖，像搭建积木一样，共同构成一个新的功能。</p><p><img src="/resources/dsh-first-look/PixPin_2026-08-14_09-12-36.jpg" alt="PixPin_2026-08-14_09-12-36"></p><p>可以说，dsh本身就是由插件构成的。</p><p>打开设置，我们看到刚安装就已经有了一批颇为庞大的插件群。我们可以以插件的方式独立选择、替换或扩展其中的任一能力。</p><p>大家可以参考官方文档来开发扩展：<br><a href="https://deepseek-harness.github.io/deepseek-harness/reference/cordis-primer">https://deepseek-harness.github.io/deepseek-harness/reference/cordis-primer</a></p><p><img src="/resources/dsh-first-look/PixPin_2026-08-14_09-53-49.png" alt="PixPin_2026-08-14_09-53-49"></p><h2 id="三、运行与可观测：四种模式-×-Trajectory"><a href="#三、运行与可观测：四种模式-×-Trajectory" class="headerlink" title="三、运行与可观测：四种模式 × Trajectory"></a>三、运行与可观测：四种模式 × Trajectory</h2><p>回到首页会话，我们再来看四种运行模式 —— 标准模式、PTC（Programmatic Tool Calling）模式、极简模式、创造模式。</p><p>正常开发使用标准模式足矣，PTC模式把多轮工具调用合成一段程序一次跑完，更快也更省上下文，同样地也适合稳定、精确的、可复现的自动化流程，想要扩展模式则使用创造模式来添加适合自己的模式。</p><p><img src="/resources/dsh-first-look/PixPin_2026-08-14_10-14-41.png" alt="PixPin_2026-08-14_10-14-41"></p><p>用标准模式来体验一下</p><p><img src="/resources/dsh-first-look/PixPin_2026-08-14_10-27-00.png" alt="PixPin_2026-08-14_10-27-00"></p><p>整个过程很丝滑，具体能力还需要长期使用感受。我们看到对话旁边有轨迹（Trajectory）的tab，很详细地记录了系统提示词、思维链、工具调用与结果、子 Agent 调度，以及每一次上下文注入。这对于优化使用、调试、构建稳定可复用的 Agent 流程十分有用。<br><img src="/resources/dsh-first-look/PixPin_2026-08-14_10-28-29.jpg" alt="PixPin_2026-08-14_10-28-29"></p><h2 id="四、远程访问"><a href="#四、远程访问" class="headerlink" title="四、远程访问"></a>四、远程访问</h2><p>既然是 Web UI，第一想法就是可以随时随地进行交互了——原生界面，拥有全部完整的体验。</p><p>直接暴露到公网肯定是不安全的，我习惯的做法是使用<strong>WireGuard</strong>构建私有内网，仅开放WG网络访问，当然也可以使用 TailScale，国内则可以用节点小宝等组网 App 来实现同样的效果。</p><p>默认是绑定到127.0.0.1的，无法远程访问，尝试将其绑定到0.0.0.0</p><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs zsh">pnpm dsh web --host 0.0.0.0 --port 3080<br></code></pre></td></tr></table></figure><p>结果直接遇到报错： </p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs log">error: --host 0.0.0.0 is intentionally not supported yet for safety:<br>it would expose remote code execution to the network; use 127.0.0.1 instead<br></code></pre></td></tr></table></figure><p>看来也是有着安全拦截的，绑到所有网卡等于把远程代码执行能力暴露给网络。CLI 在第一道门就把最危险的配置拒了。</p><p>那我只绑 WG 接口行不行？</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pnpm dsh web --host 10.0.0.2 --port 3080<br></code></pre></td></tr></table></figure><p>仍然报了错：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs log">- $.host expected &quot;127.0.0.1&quot; | &quot;0.0.0.0&quot; but got &quot;10.0.0.2&quot; (at host)<br></code></pre></td></tr></table></figure><p>结论很清晰：这个版本里，dsh web 事实上只能听 127.0.0.1，没有任何官方支持的远程绑定路径。</p><p>那就换个思路：dsh 不动，让它继续只听 127.0.0.1，我们在外面加一个转发，把 WG 接口上的请求递进去，这就得使用socat的端口转发能力了（没装的话 brew install socat）。</p><p>  <strong>转发 + 启动</strong></p>  <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs zsh">socat TCP-LISTEN:3080,<span class="hljs-built_in">bind</span>=10.0.0.2,fork,reuseaddr TCP:127.0.0.1:3080 &amp;<br>pnpm dsh web --port 3080 --trusted-host 10.0.0.2:3080<br></code></pre></td></tr></table></figure><p>  两个要点：</p><ul><li>socat 的 <code>bind=10.0.0.2</code> 让转发<strong>只开在 WG 隧道接口上</strong>，局域网网卡完全不涉及</li><li><code>--trusted-host 10.0.0.2:3080</code> 必须加，dsh 的 API 会校验请求的 Host 是否在白名单里，不在的直接 403（实测过）</li></ul><p>通过这样配置，就可以在WG网络中的任何一台设备上进行交互了，<del>（上下班路上也可以愉快工作了）</del></p><h2 id="五、探索未至之境"><a href="#五、探索未至之境" class="headerlink" title="五、探索未至之境"></a>五、探索未至之境</h2><p>正如对话界面的标题：<strong>探索未至之境</strong>，DeepSeek 之所以这么火，不只是因为其价格屠夫的称号，也不仅是其能研发前沿模型的能力，更多的还是，一次又一次地，让我们看到AI不同的一面，更多的可能，以及更多元的未来。</p><p><img src="/resources/dsh-first-look/dsh-%E5%B0%BE%E5%9B%BE-%E6%B7%B1%E6%8E%A2%E7%B4%A2.jpg" alt="dsh-尾图-深探索"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>AI</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>DeepSeek</tag>
+      
+      <tag>体验手记</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Codex 入门：一个 Agent，两种话术，三种入口</title>
     <link href="/2026/07/29/AI/Codex%E5%85%A5%E9%97%A8%EF%BC%9A%E4%B8%80%E4%B8%AAAgent%EF%BC%8C%E4%B8%A4%E7%A7%8D%E8%AF%9D%E6%9C%AF%EF%BC%8C%E4%B8%89%E7%A7%8D%E5%85%A5%E5%8F%A3/"/>
     <url>/2026/07/29/AI/Codex%E5%85%A5%E9%97%A8%EF%BC%9A%E4%B8%80%E4%B8%AAAgent%EF%BC%8C%E4%B8%A4%E7%A7%8D%E8%AF%9D%E6%9C%AF%EF%BC%8C%E4%B8%89%E7%A7%8D%E5%85%A5%E5%8F%A3/</url>
