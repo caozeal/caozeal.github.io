@@ -1,8 +1,8 @@
 ---
 title: OpenClaw 从零上手：OpenClaw 究竟是什么？
 date: 2026-03-27 12:00:00
-index_img: /resources/openclaw-from-zero/Gemini_Generated_Image_uffq74uffq74uffq.png
-banner_img: /resources/openclaw-from-zero/Gemini_Generated_Image_uffq74uffq74uffq.png
+index_img: /resources/openclaw-from-zero/Gemini_Generated_Image_uffq74uffq74uffq.jpg
+banner_img: /resources/openclaw-from-zero/Gemini_Generated_Image_uffq74uffq74uffq.jpg
 categories:
   - AI
 tags:
@@ -21,11 +21,11 @@ tags:
 - **AI智能体（AI Agent）**，是指一种能够围绕目标自主完成一系列任务的 AI 系统。
 - **Gateway网关**：负责在用户、AI 助手以及外部工具之间进行通信转发、请求调度与状态管理，让原本分散的能力能够被统一接入和调用
 
-![](/resources/openclaw-from-zero/Gemini_Generated_Image_uffq74uffq74uffq.png)
+![](/resources/openclaw-from-zero/Gemini_Generated_Image_uffq74uffq74uffq.jpg)
 
 网上冲浪的时候发现，很多人也会把 **Agent** 和 **大模型** 弄混，其实完全不一样，Agent比作机器的话，大模型则是让机器动起来的燃料，模型是内核，Agent决定行为。
 
-![](/resources/openclaw-from-zero/Gemini_Generated_Image_vn87fuvn87fuvn87.png)
+![](/resources/openclaw-from-zero/Gemini_Generated_Image_vn87fuvn87fuvn87.jpg)
 
 我们可以看出，现有的在线AI助手，如国内常见的豆包、元宝，国外常见的ChatGPT、Claude 都已经实现了Agent的部分功能，早已不是大模型刚出来时候的聊天工具。
 
@@ -42,7 +42,7 @@ tags:
 我认为，本地Agent是极具想象力的，随着大模型能力和配套设施继续变强，未来很多原本需要我们亲手在电脑上完成的事，都可以逐步交给 Agent 接管。  
 某种意义上，只要一件事能通过电脑和网络完成，它未来就有机会交给本地 Agent 去做。
 
-![](/resources/openclaw-from-zero/Gemini_Generated_Image_m5fxuem5fxuem5fx.png)
+![](/resources/openclaw-from-zero/Gemini_Generated_Image_m5fxuem5fxuem5fx.jpg)
 
 
 当然，随着龙虾的火爆，各大厂也纷纷推出各种”套壳“产品（如QClaw、ArkClaw等），算是为不想折腾或是完全不懂技术的人群提供另一种选择，一键部署，极速体验。当然，入门或者尝鲜可以，但是不建议长期依赖，要想增强对本地Agent的控制力与定制化，我们还是需要拨开层层外壳去深入定制，才能最终培养出符合我们需求、具备真正定制能力的助手。正如OpenClaw文档中某只太空龙虾所说——“去壳！去壳！”（“EXFOLIATE! EXFOLIATE!”）
