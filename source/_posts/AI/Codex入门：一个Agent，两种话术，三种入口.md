@@ -1,8 +1,8 @@
 ---
 title: Codex 入门：一个 Agent，两种话术，三种入口
 date: 2026-07-29 12:00:00
-index_img: /resources/codex-intro/2026-07-16-codex-cli-pet.png
-banner_img: /resources/codex-intro/2026-07-16-codex-cli-pet.png
+index_img: /resources/codex-intro/2026-07-16-codex-cover.jpg
+banner_img: /resources/codex-intro/2026-07-16-codex-cover.jpg
 categories:
   - AI
 tags:
