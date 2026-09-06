@@ -327,6 +327,7 @@ footer a:hover {
 /* ---------- 头图与内容衔接：底部渐隐融入页面底色 ---------- */
 .header-inner {
   position: relative;
+  overflow: hidden;   /* 裁剪 Ken Burns 呼吸时 banner/canvas 的溢出，消除底部暗条 */
 }
 
 .header-inner::after {
@@ -335,8 +336,8 @@ footer a:hover {
   left: 0;
   right: 0;
   bottom: -1px;
-  height: 24vh;
-  background: linear-gradient(180deg, rgba(244, 246, 249, 0) 0%, rgba(244, 246, 249, .55) 55%, #F4F6F9 100%);
+  height: 10vh;
+  background: linear-gradient(180deg, rgba(244, 246, 249, 0) 0%, rgba(244, 246, 249, .18) 45%, rgba(244, 246, 249, .55) 78%, #F4F6F9 100%);
   pointer-events: none;
   z-index: 1;
 }
@@ -358,7 +359,7 @@ footer a:hover {
 }
 
 [data-user-color-scheme="dark"] .header-inner::after {
-  background: linear-gradient(180deg, rgba(24, 28, 39, 0) 0%, rgba(24, 28, 39, .6) 55%, #181C27 100%);
+  background: linear-gradient(180deg, rgba(24, 28, 39, 0) 0%, rgba(24, 28, 39, .22) 45%, rgba(24, 28, 39, .6) 78%, #181C27 100%);
 }
 
 [data-user-color-scheme="dark"] .scroll-down-bar i {
