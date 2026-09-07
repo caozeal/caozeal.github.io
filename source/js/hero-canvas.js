@@ -7,7 +7,7 @@
  *   ④ 上下相对论性喷流（呼吸光束 + 微粒喷射）
  *   ⑤ 透镜星芒（被引力透镜拱起的恒星沿光环弧缓慢环绕）
  *   前景散景微尘 / 三层视差星尘 / 流星 / 鼠标光晕
- * 全部锚点定义在图片坐标系（1920x1080），按 cover 数学映射任意视口。
+ * 全部锚点定义在图片坐标系（1920x1550，底部扩版使黑洞居中于视口），按 cover 数学映射任意视口。
  */
 (function () {
   'use strict';
@@ -16,7 +16,7 @@
   if (!header || document.getElementById('hero-scene')) return;
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var banner = document.getElementById('banner');
-  var IMG_W = 1920, IMG_H = 1080;
+  var IMG_W = 1920, IMG_H = 1550;
 
   var cfg = {
     gold: '210,165,105',
@@ -50,7 +50,7 @@
     /* 喷流：top / bottom 端点 */
     jets: {
       top: { x: 947, y0: 640, y1: 408 },
-      bottom: { x: 950, y0: 1008, y1: 1092 }
+      bottom: { x: 950, y0: 1008, y1: 1300 }
     }
   };
 
