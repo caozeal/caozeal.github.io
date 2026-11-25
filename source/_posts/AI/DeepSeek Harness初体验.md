@@ -1,8 +1,9 @@
 ---
 title: DeepSeek Harness 初体验
 date: 2026-08-14 12:00:00
-index_img: /resources/dsh-first-look/PixPin_2026-08-14_09-12-36.jpg
-banner_img: /resources/dsh-first-look/PixPin_2026-08-14_09-12-36.jpg
+featured: 2
+index_img: /resources/dsh-first-look/cover-dsh.jpg
+banner_img: /resources/dsh-first-look/cover-dsh.jpg
 categories:
   - AI
 tags:

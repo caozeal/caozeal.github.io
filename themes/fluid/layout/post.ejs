@@ -49,6 +49,17 @@ page.banner_mask_alpha = page.banner_mask_alpha || theme.post.banner_mask_alpha
             <% } %>
             <hr/>
             <div>
+              <% if (page.mp_url) { %>
+                <div class="mp-original" data-mp-url="<%= page.mp_url %>">
+                  <div class="mp-original-qr"></div>
+                  <div class="mp-original-info">
+                    <div class="mp-original-label">本文同步发布于公众号「傲然绝唳的小栈」</div>
+                    <a class="mp-original-link" href="<%= page.mp_url %>" target="_blank" rel="noopener">阅读公众号原文</a>
+                    <div class="mp-original-tip">或微信扫码，在手机端阅读</div>
+                  </div>
+                </div>
+              <% } %>
+
               <%- inject_point('postMetaBottom') %>
 
               <%- inject_point('postCopyright') %>

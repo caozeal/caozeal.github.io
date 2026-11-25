@@ -1,8 +1,9 @@
 ---
 title: 为什么我推荐 Orca?
 date: 2026-08-21 12:00:00
-index_img: /resources/why-orca/PixPin_2026-08-03_19-46-03.png
-banner_img: /resources/why-orca/PixPin_2026-08-03_19-46-03.png
+featured: 1
+index_img: /resources/why-orca/cover-orca.jpg
+banner_img: /resources/why-orca/cover-orca.jpg
 categories:
   - AI
 tags:

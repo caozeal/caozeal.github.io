@@ -5,61 +5,251 @@ if (theme.index.slogan.enable) {
 page.banner_img = theme.index.banner_img
 page.banner_img_height = theme.index.banner_img_height
 page.banner_mask_alpha = theme.index.banner_mask_alpha
+
+var firstPage = !page.current || page.current === 1
+var featuredPosts = []
+var githubLink = ''
+;(theme.about.icons || []).forEach(function (item) {
+  if (!githubLink && item.link && item.link.indexOf('github.com') !== -1) {
+    githubLink = item.link
+  }
+})
+
+if (firstPage) {
+  var allPosts = site.posts.toArray()
+  featuredPosts = allPosts.filter(function (post) {
+    return Number(post.featured) > 0
+  }).sort(function (a, b) {
+    return Number(a.featured) - Number(b.featured)
+  }).slice(0, 3)
+
+  if (featuredPosts.length < 3) {
+    var selectedPaths = featuredPosts.map(function (post) { return post.path })
+    var recentPosts = allPosts.slice().sort(function (a, b) {
+      return b.date.valueOf() - a.date.valueOf()
+    })
+    for (var i = 0; i < recentPosts.length && featuredPosts.length < 3; i++) {
+      if (selectedPaths.indexOf(recentPosts[i].path) === -1) {
+        featuredPosts.push(recentPosts[i])
+        selectedPaths.push(recentPosts[i].path)
+      }
+    }
+  }
+}
 %>
 
-<% page.posts.each(function (post) { %>
-  <div class="row mx-auto index-card">
-    <% var post_url = url_for(post.path), index_img = post.index_img || theme.post.default_index_img %>
-    <% if (index_img) { %>
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="<%= post_url %>" target="<%- theme.index.post_url_target %>">
-          <img src="<%= url_for(index_img) %>" alt="<%= post.title %>">
+<% if (firstPage) { %>
+<div class="portal-home">
+  <section class="portal-hero portal-reveal" aria-labelledby="portal-title">
+    <div class="portal-hero-main">
+      <p class="portal-kicker portal-kicker--light">
+        <span class="portal-status" aria-hidden="true"></span>
+        PERSONAL PORTAL · SIGNAL ONLINE
+      </p>
+      <h1 id="portal-title"><%= theme.about.intro || config.description %></h1>
+      <p class="portal-hero-copy">记录 AI、Agent 与工程实践，也收藏一些可以动手玩的实验。这里是文章、作品与好奇心的汇合点。</p>
+      <div class="portal-actions">
+        <a class="portal-button portal-button--primary" href="#featured">
+          <span>开始阅读</span><i class="iconfont icon-arrowright" aria-hidden="true"></i>
+        </a>
+        <a class="portal-button portal-button--ghost" href="#lab">
+          <span>进入实验室</span><i class="iconfont icon-fire" aria-hidden="true"></i>
         </a>
       </div>
-    <% } %>
-    <article class="col-12 col-md-<%= index_img ? '8' : '12' %> mx-auto index-info">
-      <h1 class="index-header">
-        <% if (theme.index.post_sticky && theme.index.post_sticky.enable && post.sticky > 0) { %>
-          <i class="index-pin <%= theme.index.post_sticky && theme.index.post_sticky.icon %>" title="Pin on top"></i>
-        <% } %>
-        <a href="<%= post_url %>" target="<%- theme.index.post_url_target %>">
-          <%= post.title %>
-        </a>
-      </h1>
-
-      <% var excerpt = post.description || post.excerpt || (theme.index.auto_excerpt.enable && post.content) %>
-      <a class="index-excerpt <%= index_img ? '' : 'index-excerpt__noimg' %>" href="<%= post_url %>" target="<%- theme.index.post_url_target %>">
+    </div>
+    <aside class="portal-telemetry" aria-label="站点概览">
+      <p class="portal-telemetry-title">STATION DATA / 站点数据</p>
+      <dl>
         <div>
-          <%- strip_html(excerpt).substring(0, 200).trim().replace(/\n/g, ' ') %>
+          <dt>LOGS / 文章</dt>
+          <dd><%= String(site.posts.length).padStart(2, '0') %></dd>
+        </div>
+        <div>
+          <dt>LABS / 实验</dt>
+          <dd>02</dd>
+        </div>
+        <div class="portal-telemetry-focus">
+          <dt>CURRENT FREQUENCY</dt>
+          <dd>AI · AGENT · CODE</dd>
+        </div>
+      </dl>
+    </aside>
+  </section>
+
+  <section class="portal-section portal-reveal" id="featured" aria-labelledby="featured-title">
+    <div class="portal-section-heading">
+      <div>
+        <p class="portal-kicker">01 / FEATURED LOGS</p>
+        <h2 id="featured-title">精选文章</h2>
+      </div>
+      <a class="portal-section-link" href="<%- url_for('/archives/') %>">
+        全部归档 <i class="iconfont icon-arrowright" aria-hidden="true"></i>
+      </a>
+    </div>
+
+    <div class="portal-featured-grid">
+      <% featuredPosts.forEach(function (post, index) { %>
+        <% var post_url = url_for(post.path) %>
+        <% var index_img = post.index_img || theme.post.default_index_img %>
+        <% var excerpt = post.description || post.excerpt || (theme.index.auto_excerpt.enable && post.content) || '' %>
+        <article class="portal-featured-item <%= index === 0 ? 'portal-featured-item--lead' : '' %>">
+          <a class="portal-featured-media <%= index_img ? '' : 'portal-featured-media--empty' %>" href="<%= post_url %>" aria-label="阅读：<%= post.title %>">
+            <% if (index_img) { %>
+              <img src="<%= url_for(index_img) %>" alt="<%= post.title %>封面" loading="lazy" decoding="async">
+            <% } else { %>
+              <span>FIELD NOTE / <%= String(index + 1).padStart(2, '0') %></span>
+            <% } %>
+          </a>
+          <div class="portal-featured-content">
+            <div class="portal-featured-meta">
+              <span>LOG <%= String(index + 1).padStart(2, '0') %></span>
+              <time datetime="<%= full_date(post.date, 'YYYY-MM-DD HH:mm') %>"><%- date(post.date, config.date_format) %></time>
+            </div>
+            <h3><a href="<%= post_url %>"><%= post.title %></a></h3>
+            <p><%- strip_html(excerpt).substring(0, index === 0 ? 130 : 90).trim().replace(/\n/g, ' ') %></p>
+            <div class="portal-featured-footer">
+              <% if (post.categories.length > 0) { %>
+                <span class="portal-featured-category"><%- partial('_partials/category-chains', { categories: post.categories, limit: 1 }) %></span>
+              <% } %>
+              <a href="<%= post_url %>" class="portal-read-link">阅读全文 <i class="iconfont icon-arrowright" aria-hidden="true"></i></a>
+            </div>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  </section>
+
+  <section class="portal-section portal-reveal" id="lab" aria-labelledby="lab-title">
+    <div class="portal-section-heading">
+      <div>
+        <p class="portal-kicker">02 / INTERACTIVE LAB</p>
+        <h2 id="lab-title">互动实验舱</h2>
+      </div>
+      <p class="portal-section-note">不止阅读，也可以亲手启动。</p>
+    </div>
+
+    <div class="portal-lab-grid">
+      <a class="portal-lab-card portal-lab-card--watch" href="<%- url_for('/html/watch/') %>">
+        <div class="portal-lab-visual" aria-hidden="true">
+          <span class="portal-orbit"></span>
+          <i class="iconfont icon-clock"></i>
+        </div>
+        <div class="portal-lab-content">
+          <span class="portal-lab-number">EXPERIMENT 01 · WEBGL</span>
+          <h3>3D 镂空机械腕表</h3>
+          <p>观察齿轮、摆轮与擒纵机构，切换爆炸视图、零件标签和夜光模式。</p>
+          <span class="portal-lab-cta">启动实验 <i class="iconfont icon-arrowright"></i></span>
         </div>
       </a>
 
-      <div class="index-btm post-metas">
-        <% if (theme.index.post_meta.date) { %>
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="<%= full_date(post.date, 'YYYY-MM-DD HH:mm') %>" pubdate>
-              <%- date(post.date, config.date_format) %>
-            </time>
-          </div>
-        <% } %>
-        <% if (theme.index.post_meta.category && post.categories.length > 0) { %>
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            <%- partial('_partials/category-chains', { categories: post.categories, limit: 1 }) %>
-          </div>
-        <% } %>
-        <% if (theme.index.post_meta.tag && post.tags.length > 0) { %>
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            <% post.tags.each(function(tag){ %>
-              <a href="<%= url_for(tag.path) %>">#<%- tag.name %></a>
-            <% }) %>
-          </div>
-        <% } %>
-      </div>
-    </article>
-  </div>
-<% }) %>
+      <a class="portal-lab-card portal-lab-card--snake" href="<%- url_for('/html/snake/') %>">
+        <div class="portal-lab-visual" aria-hidden="true">
+          <span class="portal-orbit"></span>
+          <i class="iconfont icon-fire"></i>
+        </div>
+        <div class="portal-lab-content">
+          <span class="portal-lab-number">EXPERIMENT 02 · CANVAS</span>
+          <h3>霓虹贪吃蛇</h3>
+          <p>在连续贝塞尔轨迹中连击、拾取道具，也可以交给 AI 自动巡航与回放。</p>
+          <span class="portal-lab-cta">启动实验 <i class="iconfont icon-arrowright"></i></span>
+        </div>
+      </a>
+    </div>
+  </section>
 
-<%- partial('_partials/paginator') %>
+  <section class="portal-contact portal-reveal" aria-labelledby="contact-title">
+    <div class="portal-contact-copy">
+      <p class="portal-kicker">03 / CONTACT CHANNEL</p>
+      <h2 id="contact-title">保持信号连接。</h2>
+      <p>代码与后续更新会发布在 GitHub；长文也会同步到公众号「傲然绝唳的小栈」。</p>
+      <div class="portal-contact-actions">
+        <% if (githubLink) { %>
+          <a class="portal-contact-link" href="<%= githubLink %>" target="_blank" rel="noopener noreferrer">
+            <i class="iconfont icon-github-fill" aria-hidden="true"></i> GitHub
+          </a>
+        <% } %>
+        <a class="portal-contact-link" href="<%- url_for('/about/') %>">
+          <i class="iconfont icon-user-fill" aria-hidden="true"></i> 关于我
+        </a>
+      </div>
+    </div>
+    <a class="portal-wechat" href="<%- url_for('/about/') %>" aria-label="查看公众号二维码与联系方式">
+      <img src="<%- url_for('/images/wechat-banner.jpg') %>" alt="微信搜一搜「傲然绝唳的小栈」二维码" width="900" height="309" loading="lazy" decoding="async">
+      <span>WECHAT / 微信搜一搜「傲然绝唳的小栈」</span>
+    </a>
+  </section>
+</div>
+<% } %>
+
+<section class="<%= firstPage ? 'portal-latest' : 'portal-latest portal-latest--paged' %>" aria-labelledby="latest-title">
+  <div class="portal-section-heading">
+    <div>
+      <p class="portal-kicker"><%= firstPage ? '04 / ALL LOGS' : 'ARCHIVE CONTINUED' %></p>
+      <% if (firstPage) { %>
+        <h2 id="latest-title">文章日志</h2>
+      <% } else { %>
+        <h1 id="latest-title">文章日志 · 第 <%= page.current %> 页</h1>
+      <% } %>
+    </div>
+    <% if (firstPage) { %>
+      <p class="portal-section-note">按时间顺序，继续浏览全部记录。</p>
+    <% } %>
+  </div>
+
+  <% page.posts.each(function (post) { %>
+    <div class="row mx-auto index-card">
+      <% var post_url = url_for(post.path), index_img = post.index_img || theme.post.default_index_img %>
+      <% if (index_img) { %>
+        <div class="col-12 col-md-4 m-auto index-img">
+          <a href="<%= post_url %>" target="<%- theme.index.post_url_target %>">
+            <img src="<%= url_for(index_img) %>" alt="<%= post.title %>" loading="lazy" decoding="async">
+          </a>
+        </div>
+      <% } %>
+      <article class="col-12 col-md-<%= index_img ? '8' : '12' %> mx-auto index-info">
+        <h2 class="index-header">
+          <% if (theme.index.post_sticky && theme.index.post_sticky.enable && post.sticky > 0) { %>
+            <i class="index-pin <%= theme.index.post_sticky && theme.index.post_sticky.icon %>" title="Pin on top"></i>
+          <% } %>
+          <a href="<%= post_url %>" target="<%- theme.index.post_url_target %>">
+            <%= post.title %>
+          </a>
+        </h2>
+
+        <% var excerpt = post.description || post.excerpt || (theme.index.auto_excerpt.enable && post.content) %>
+        <a class="index-excerpt <%= index_img ? '' : 'index-excerpt__noimg' %>" href="<%= post_url %>" target="<%- theme.index.post_url_target %>">
+          <div>
+            <%- strip_html(excerpt).substring(0, 200).trim().replace(/\n/g, ' ') %>
+          </div>
+        </a>
+
+        <div class="index-btm post-metas">
+          <% if (theme.index.post_meta.date) { %>
+            <div class="post-meta mr-3">
+              <i class="iconfont icon-date"></i>
+              <time datetime="<%= full_date(post.date, 'YYYY-MM-DD HH:mm') %>" pubdate>
+                <%- date(post.date, config.date_format) %>
+              </time>
+            </div>
+          <% } %>
+          <% if (theme.index.post_meta.category && post.categories.length > 0) { %>
+            <div class="post-meta mr-3 d-flex align-items-center">
+              <i class="iconfont icon-category"></i>
+              <%- partial('_partials/category-chains', { categories: post.categories, limit: 1 }) %>
+            </div>
+          <% } %>
+          <% if (theme.index.post_meta.tag && post.tags.length > 0) { %>
+            <div class="post-meta">
+              <i class="iconfont icon-tags"></i>
+              <% post.tags.each(function(tag){ %>
+                <a href="<%= url_for(tag.path) %>">#<%- tag.name %></a>
+              <% }) %>
+            </div>
+          <% } %>
+        </div>
+      </article>
+    </div>
+  <% }) %>
+
+  <%- partial('_partials/paginator') %>
+</section>

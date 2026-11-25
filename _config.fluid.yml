@@ -232,8 +232,10 @@ font:
 # 指定自定义 .js 文件路径，支持列表；路径是相对 source 目录，如 /js/custom.js 对应存放目录 source/js/custom.js
 # Specify the path of your custom js file, support list. The path is relative to the source directory, such as `/js/custom.js` corresponding to the directory `source/js/custom.js`
 custom_js:
-  # Live2D 看板娘（动态宠物），通过自定义脚本按需加载 CDN 资源
-  - /js/waifu-init.js
+  # DeepSeek 蓝鱼桌宠（本地素材，支持点击互动）
+  - /js/dsh-pet.js
+  # 公众号原文二维码生成库，需在 custom.js 之前加载
+  - /js/qrcode.min.js
   - /js/custom.js
   - /js/hero-canvas.js
 
@@ -353,12 +355,20 @@ navbar:
   # Navigation bar menu. `key` is used to associate languages/*.yml. If there is no association, the value of `key` itself will be displayed; if `icon` is a css class, it can be omitted; adding `name` can force the display of the specified name
   menu:
     - { key: "home", link: "/", icon: "iconfont icon-home-fill" }
-    - { key: "archive", link: "/archives/", icon: "iconfont icon-archive-fill" }
-    - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
-    - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
+    - key: "articles"
+      name: "文章"
+      icon: "iconfont icon-archive-fill"
+      submenu:
+        - { key: "archive", link: "/archives/", icon: "iconfont icon-archive-fill" }
+        - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
+        - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
+    - key: "lab"
+      name: "实验室"
+      icon: "iconfont icon-fire"
+      submenu:
+        - { key: "watch", link: "/html/watch/", name: "3D 腕表" }
+        - { key: "game", link: "/html/snake/", icon: "iconfont icon-fire", name: "霓虹贪吃蛇" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
-    - { key: "game", link: "/html/snake/snake.html", icon: "iconfont icon-fire" }
-    - { key: "watch", link: "/html/watch/", icon: "iconfont icon-clock", name: "3D 腕表" }
     - { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
 
 # 搜索功能，基于 hexo-generator-search 插件，若已安装其他搜索插件请关闭此功能，以避免生成多余的索引文件
