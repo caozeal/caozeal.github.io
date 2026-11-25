@@ -1,111 +1,22 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="zh-CN">
 <head>
-  <title>Snake Game</title>
-  <style>
-    /* 在 CSS 文件中添加以下代码 */
-    @media screen and (orientation: landscape) {
-      #controls {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 1;
-        margin: auto;
-        text-align: center;
-      }
-    }
-
-    @media screen and (orientation: portrait) {
-      #controls {
-        position: absolute;
-        bottom: 10;
-        left: 0;
-        right: 0;
-        margin: auto;
-        text-align: center;
-      }
-    }
-
-    #controls {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(3, 1fr);
-      grid-gap: 10px;
-      justify-content: center;
-      align-items: center;
-      margin-top: 20px;
-    }
-
-    #up {
-      grid-column: 2;
-      grid-row: 1;
-      height: 160px;
-      width: 240px;
-    }
-
-    #down {
-      grid-column: 2;
-      grid-row: 3;
-      height: 160px;
-      width: 240px;
-    }
-
-    #left {
-      grid-column: 1;
-      grid-row: 2;
-      height: 160px;
-      width: 240px;
-    }
-
-    #right {
-      grid-column: 3;
-      grid-row: 2;
-      height: 160px;
-      width: 240px;
-    }
-
-    #restart {
-      grid-column: 2;
-      grid-row: 2;
-      height: 160px;
-      width: 240px;
-      background-color: #cc3300;
-    }
-
-    #controls button {
-      font-size: 24px;
-      margin: 0;
-      padding: 0;
-    }
-
-    /* 在 CSS 文件中添加以下代码 */
-    button {
-      transition: transform 0.1s ease-in-out;
-      border-radius: 10px;
-    }
-
-    button:active {
-      transform: scale(0.9);
-    }
-  </style>
+<meta charset="utf-8">
+<title>贪吃蛇 · NEON SERPENT</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="index.html">
+<meta http-equiv="refresh" content="0; url=index.html">
+<style>
+  html,body{height:100%;margin:0;background:#05060c;color:#5ef2b8;
+    font:14px/1.6 "SF Mono",ui-monospace,Menlo,Consolas,monospace;
+    display:grid;place-items:center;letter-spacing:.18em}
+  a{color:#5ef2b8;text-decoration:none;border-bottom:1px solid rgba(94,242,184,.4);padding-bottom:2px}
+  a:hover{color:#fff;border-color:#fff}
+</style>
+<script>location.replace('index.html');</script>
 </head>
-
 <body>
-  <!-- 在 HTML 文件中添加以下代码 -->
-  <div id="score">Score: 0</div>
-  <canvas id="canvas"></canvas>
-  <label for="speed-control">Speed:</label>
-  <input type="range" id="speed-control" name="speed" min="0" max="29" value="10">
-  <div id="controls">
-    <button id="up">↑</button>
-    <button id="down">↓</button>
-    <button id="left">←</button>
-    <button id="right">→</button>
-    <button id="restart" style="display: none;">Restart</button>
-  </div>
-  <div id="score">version:v0.0.1.4</div>
-  <script src="snake.js"></script>
+  <div>正在进入 NEON SERPENT … <a href="index.html">点此继续</a></div>
 </body>
-
 </html>
